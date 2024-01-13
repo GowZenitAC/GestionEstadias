@@ -4,7 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
-    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <title>@yield('titulo')</title>
+    <!-- inicio font -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" >
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <!-- fin font -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
@@ -481,9 +486,24 @@
                         <li class="nav-item dropdown ms-lg-3">
                             <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="media d-flex align-items-center">
-                                    <img class="avatar rounded-circle" alt="Image placeholder" src="../../assets/img/team/profile-picture-3.jpg">
+                                    <!-- <img class="avatar rounded-circle" alt="Image placeholder" src="../../assets/img/team/profile-picture-3.jpg"> -->
                                     <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900">Bonnie Green</span>
+                                        <!-- botones login -->
+                                        @if(auth()->check())
+                <li>
+                  <br>
+                  <p style="color: black;">Bienvenid@: <b>{{auth()->user()->name}}</b></p>
+
+                </li>
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <li><a href="{{ route('login.destroy') }}" class="btn btn-outline-danger">Cerrar sesión</a></li>
+                @else
+                <li><a href="{{ route('login.index') }}">Iniciar</a></li>
+                <li><a href="{{ route('register.index') }}">Registrar</a></li>
+
+                @endif
+                                        <!-- fin de botones login -->
+                                        
                                     </div>
                                 </div>
                             </a>
@@ -575,7 +595,8 @@
                 <div class="card bg-yellow-100 border-0 shadow">
                     <div class="card-header d-sm-flex flex-row align-items-center flex-0">
                         <div class="d-block mb-3 mb-sm-0">
-                            <div class="fs-5 fw-normal mb-2">Sales Value</div>
+                            @yield('contenido')
+                            <div class="fs-5 fw-normal mb-2">Sales Vlllalue</div>
                             <h2 class="fs-3 fw-extrabold">$10,567</h2>
                             <div class="small mt-2">
                                 <span class="fw-normal me-2">Yesterday</span>
