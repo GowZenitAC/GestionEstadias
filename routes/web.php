@@ -24,6 +24,7 @@ Route::get('home', function () {
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
+Route::view('categorias','categorias');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])
