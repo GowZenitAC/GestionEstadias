@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('layout.app');
 });
+// apis
+Route::resource('apiCategory',CategoryController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
