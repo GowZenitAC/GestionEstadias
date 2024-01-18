@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\preguntasController;
 
 
 /*
@@ -25,10 +26,12 @@ Route::get('home', function () {
 });
 // apis
 Route::resource('apiCategory',CategoryController::class);
+Route::Resource('apiPreguntas',preguntasController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
 Route::view('categorias','categorias');
+Route::view('preguntas','preguntas');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])
