@@ -32,13 +32,13 @@ var ruta = document.querySelector("[name=route]").value;
           });
 
         },
-      },
       
-         mostrarModal:function(){
-           this.agregando=true;
-            this.pregunta='';
-           $('#modalpreguntas').modal('show');
-           },
+      
+            mostrarModal:function(){
+             this.agregando=true;
+              this.pregunta='';
+              $('#modalPreguntas').modal('show');
+            },
 
            editandopregunta:function(id){
             this.agregando=false;
@@ -46,14 +46,14 @@ var ruta = document.querySelector("[name=route]").value;
             this.$http.get(apiPreguntas + '/' + id).then(function(json){
               this.pregunta=json.data.pregunta;
             });
-            $('#modalpreguntas').modal('show');
+            $('#modalPreguntas').modal('show');
           },
           actualizarpregunta:function(){
             var jsonPregunta = {pregunta:this.pregunta};
-            this.$http.patch(apiPregunta + '/' + this.id,jsonPregunta).then(function(json){
+            this.$http.patch(apiPreguntas + '/' + this.id,jsonPregunta).then(function(json){
               this.obtenerpregunta();
             });
-            $('#modalpreguntas').modal('hide');
+            $('#modalPreguntas').modal('hide');
           },
           eliminarpregunta:function(id){
             var confir = confirm('Desaea eliminar?');
@@ -70,15 +70,15 @@ var ruta = document.querySelector("[name=route]").value;
             var pregunta = {
               pregunta:this.pregunta
             };
-            this.$http.post(apiPregunta,pregunta).then(function(json){
+            this.$http.post(apiPreguntas,pregunta).then(function(json){
               this.obtenerpregunta();
               this.pregunta='';
             }).catch(function(json){
-              console.log(categories);
+              console.log(pregunta);
             });
             $('#modalPreguntas').modal('hide');
           },
 
-
+        },
 
 })
