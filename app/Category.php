@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\preguntas;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -10,7 +11,7 @@ class Category extends Model
     protected $table='categories';
     protected $primaryKey='id';
     public $incrementing=false;
-
+    protected $with=['preguntas'];
     public $timestamps=false;
 
     protected $fillable=[
@@ -18,4 +19,7 @@ class Category extends Model
         'name'
     ];
 
+    public function preguntas(){
+        return $this -> hasMany(preguntas::class,'id','id');
+    }
 }
