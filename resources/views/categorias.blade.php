@@ -67,8 +67,8 @@
         </button>
       </div>
       <div class="modal-body">
-      Escriba el id:
-        <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br>
+      <!-- Escriba el id:
+        <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br> -->
         Nombre de la categoría:
         <input type="text" class="form-control" placeholder="Nombre de la categoria" v-model="name"><br>
       </div>
