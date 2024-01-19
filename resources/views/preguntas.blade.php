@@ -32,9 +32,9 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="pregunta in filtropregunta">
+                        <tr v-for="pregunta in pregunta">
                             <th>@{{pregunta.pregunta}}</th>
-                            <th><button class="btn" @click="editandopregunta(Pregunta.id)">
+                            <th><button class="btn" @click="editandopregunta(pregunta.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
@@ -69,7 +69,7 @@
       <div class="modal-body">
       Escriba el id:
         <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br>
-        Nombre de la categoría:
+        escriba la pregunta:
         <input type="text" class="form-control" placeholder="escribe pregunta" v-model="pregunta"><br>
       </div>
       <div class="modal-footer">
