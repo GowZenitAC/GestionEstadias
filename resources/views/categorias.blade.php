@@ -56,7 +56,7 @@
     <!-- Button Modal -->
 <!-- Modal Content -->
 <!-- INICIA VENTANA MODAL -->
-<div class="modal fade" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -67,17 +67,16 @@
         </button>
       </div>
       <div class="modal-body">
-      <!-- Escriba el id:
-        <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br> -->
+     
         Nombre de la categoría:
         <input type="text" class="form-control" placeholder="Nombre de la categoria" v-model="name"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> -->
-        <button type="button" class="btn btn-primary" @click="guardarCategory()" v-if="agregando==true">Guardar</button>
+       
+        <button type="button" class="btn btn-primary" @click="guardarCategory()" v-if="agregando==true && name.trim() !== ''">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click="actualizarCategory()" v-if="agregando==false">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarCategory()" v-if="agregando==false && name.trim() !== ''">Guardar</button>
       </div>
     </div>
   </div>
