@@ -40,7 +40,7 @@ var ruta = document.querySelector("[name=route]").value;
               $('#modalPreguntas').modal('show');
             },
 
-           editandopregunta:function(id){
+            editandopregunta:function(id){
             this.agregando=false;
             this.id=id;
             this.$http.get(apiPreguntas + '/' + id).then(function(json){
@@ -81,4 +81,15 @@ var ruta = document.querySelector("[name=route]").value;
 
         },
 
-})
+        computed:{
+
+          filtropregunta:function(){
+            return this.pregunta.filter((pregunta)=>{
+              return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
+            });
+          },
+      
+    }
+  })
+
+
