@@ -11,7 +11,7 @@ class preguntas extends Model
     
     protected $table='preguntas';
     protected $primaryKey='id';
-    public $incrementing=false;
+    public $incrementing=true;
     protected $With=['Category'];
     public $timestamps=false;
 

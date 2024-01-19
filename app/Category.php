@@ -10,7 +10,7 @@ class Category extends Model
 {
     protected $table='categories';
     protected $primaryKey='id';
-    public $incrementing=false;
+    public $incrementing=true;
     protected $with=['preguntas'];
     public $timestamps=false;
 
