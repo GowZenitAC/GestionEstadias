@@ -14,7 +14,8 @@ class preguntasController extends Controller
     {
         //
         // Mostrar una lista de registros
-        return preguntas::all();
+        $preguntas = preguntas::all();
+        return $preguntas;
     }
 
     /**
@@ -35,8 +36,8 @@ class preguntasController extends Controller
     {
         //
         $preguntas=new preguntas();
-        $preguntas->id=$request->get('id');
         $preguntas->pregunta=$request->get('pregunta');
+        $preguntas->category_id=$request->get('category_id');
         $preguntas->save();
 
     }
@@ -67,6 +68,7 @@ class preguntasController extends Controller
         $preguntas=preguntas::find($id);
         $preguntas->id=$request->get('id');
         $preguntas->pregunta=$request->get('pregunta');
+        $preguntas->category_id=$request->get('category_id');
         $preguntas->update();
     }
 

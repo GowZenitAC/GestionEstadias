@@ -18,9 +18,9 @@ class preguntas extends Model
     protected $fillable=[
     	'id',
         'pregunta',
-        'id_categoria'
+        'category_id'
     ];
     public function Category(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);    
     }
 }

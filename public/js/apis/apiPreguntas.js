@@ -1,5 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
  var apiPreguntas = ruta + '/apiPreguntas';
+ let apiCategory = ruta + '/apiCategory';
  
  new Vue({
     http: {
@@ -14,26 +15,35 @@ var ruta = document.querySelector("[name=route]").value;
         id:'',
         pregunta:'',
         buscar:'',
-        pregunta:[],
+        preguntas:[],
+        categories:[],
+        category_id:'',
     },
 
     created:function(){
         this.obtenerpregunta();
-       
+        this.getCategories();
       },
       //funcion que se usa cuando se crea la pagina
       methods:{
 
         obtenerpregunta:function(){
           this.$http.get(apiPreguntas).then(function(json){
-            this.pregunta=json.data;
+            this.preguntas=json.data;
             console.log(json.data) 
           }).catch(function(json){
-            console.log.apply(json);
+            console.log(json);
           });
 
         },
-      
+        getCategories(){
+          this.$http.get(apiCategory).then(function(json){
+            this.categories=json.data;
+            console.log(json.data)
+          }).catch(function(json){
+            console.log(json);
+          });
+        },
       
             mostrarModal:function(){
              this.agregando=true;
@@ -69,7 +79,8 @@ var ruta = document.querySelector("[name=route]").value;
           },
           guardarpregunta:function(){
             var pregunta = {
-              pregunta:this.pregunta
+              pregunta:this.pregunta,
+              category_id:this.category_id
             };
             this.$http.post(apiPreguntas,pregunta).then(function(json){
               this.obtenerpregunta();
@@ -85,11 +96,11 @@ var ruta = document.querySelector("[name=route]").value;
 
         computed:{
 
-          filtropregunta:function(){
-            return this.pregunta.filter((pregunta)=>{
-              return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
-            });
-          },
+          // filtropregunta:function(){
+          //   return this.pregunta.filter((pregunta)=>{
+          //     return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
+          //   });
+          // },
       
     }
   })

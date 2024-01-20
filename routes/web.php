@@ -30,8 +30,8 @@ Route::Resource('apiPreguntas',preguntasController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
-Route::view('categorias','categorias');
-Route::view('preguntas','preguntas');
+Route::view('categorias','categorias')->middleware('auth');
+Route::view('preguntas','preguntas')->middleware('auth');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])

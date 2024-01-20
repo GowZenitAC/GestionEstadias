@@ -9,7 +9,6 @@ class Category extends Model
 {
     protected $table='categories';
     protected $primaryKey='id';
-    protected $with=['preguntas'];
     public $incrementing=true;
 
     public $timestamps=false;
@@ -20,7 +19,7 @@ class Category extends Model
     ];
 
     public function preguntas(){
-        return $this->hasMany(preguntas::class,'id','id');
+        return $this->hasMany(preguntas::class);
 
     }
     
