@@ -19,6 +19,7 @@ var ruta = document.querySelector("[name=route]").value;
 
     created:function(){
         this.obtenerpregunta();
+       
       },
       //funcion que se usa cuando se crea la pagina
       methods:{
@@ -42,15 +43,15 @@ var ruta = document.querySelector("[name=route]").value;
 
             editandopregunta:function(id){
             this.agregando=false;
-            this.id=id;
+            this.id = id;
             this.$http.get(apiPreguntas + '/' + id).then(function(json){
               this.pregunta=json.data.pregunta;
             });
             $('#modalPreguntas').modal('show');
           },
           actualizarpregunta:function(){
-            var jsonPregunta = {pregunta:this.pregunta};
-            this.$http.patch(apiPreguntas + '/' + this.id,jsonPregunta).then(function(json){
+            var jsonpregunta = {pregunta:this.pregunta};
+            this.$http.patch(apiPreguntas + '/' + this.id,jsonpregunta).then(function(json){
               this.obtenerpregunta();
             });
             $('#modalPreguntas').modal('hide');
@@ -79,6 +80,7 @@ var ruta = document.querySelector("[name=route]").value;
             $('#modalPreguntas').modal('hide');
           },
 
+        
         },
 
         computed:{
