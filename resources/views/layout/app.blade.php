@@ -125,6 +125,16 @@
                     </a>
                 </li>
                 <!-- fin boton de categorias -->
+                <!-- inicio boton de Opciones -->
+                <li class="nav-item ">
+                    <a href="opciones" class="nav-link">
+                        <span class="sidebar-icon">
+                        <i class="fa-duotone fa-option"></i>
+                        </span>
+                        <span class="sidebar-text">Opciones</span>
+                    </a>
+                </li>
+                <!-- fin boton de Opciones -->
                 <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/kanban.html" target="_blank" class="nav-link d-flex justify-content-between">
                         <span>

@@ -18,6 +18,7 @@ var ruta = document.querySelector("[name=route]").value;
         preguntas:[],
         categories:[],
         category_id:'',
+        agregando:true
     },
 
     created:function(){
@@ -52,10 +53,12 @@ var ruta = document.querySelector("[name=route]").value;
             },
 
             editandopregunta:function(id){
+              console.log('recibido',id);
             this.agregando=false;
             this.id = id;
             this.$http.get(apiPreguntas + '/' + id).then(function(json){
               this.pregunta=json.data.pregunta;
+              // console.log(this.pregunta);
             });
             $('#modalPreguntas').modal('show');
           },
