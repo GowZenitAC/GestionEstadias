@@ -15,7 +15,7 @@ class Opciones extends Model
 
     protected $fillable=[
     	'id',
-        'opciones',
+        'option',
         'puntos'
     ];
     

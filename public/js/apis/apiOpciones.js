@@ -13,7 +13,7 @@ new Vue({
           titulo:'Opciones',
           opciones:[],
           buscar:'',
-          opciones:'',
+          option:'',
           puntos:'',
           id:'',
           agregando:true,
@@ -32,7 +32,7 @@ new Vue({
 
         mostrarModal:function(){
             this.agregando=true;
-            this.opciones='';
+            this.option='';
             $('#modalOpciones').modal('show');
           },
     
@@ -48,12 +48,12 @@ new Vue({
 
         guardarOpciones:function(){
             var opcion = {
-                opciones:this.opciones,
+                option:this.option,
                 puntos:this.puntos
             };
             this.$http.post(apiOpciones,opcion).then(function(json){
                 this.obtenerOpciones();
-                this.opciones='';
+                this.option='';
                 this.puntos='';
             });
             $('#modalOpciones').modal('hide');
@@ -64,14 +64,14 @@ new Vue({
             this.agregando=false;
             this.id=id;
             this.$http.get(apiOpciones+'/'+id).then(function(json){
-                this.opciones=json.data.opciones;
+                this.option=json.data.option;
                 this.puntos=json.data.puntos;
             });
             $('#modalOpciones').modal('show');
         },
 
         actualizarOpciones:function(){
-            var jsonOpciones = {opciones:this.opciones,
+            var jsonOpciones = {option:this.option,
                                 puntos:this.puntos};
             this.$http.patch(apiOpciones+'/'+this.id,jsonOpciones).then(function(json){
                 this.obtenerOpciones();

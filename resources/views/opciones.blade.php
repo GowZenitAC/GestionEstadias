@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="opcion in opciones">
+                        <tr v-for="opcion in filtrOpciones">
                             <th>@{{opcion.id}}</th>
                             <th>@{{opcion.opciones}}</th>
                             <th>@{{opcion.puntos}}</th>
@@ -75,7 +75,7 @@
       <div class="modal-body">
      
         Opción:
-        <input type="text" class="form-control" placeholder="Opción" v-model="opciones"><br>
+        <input type="text" class="form-control" placeholder="Opción" v-model="option"><br>
         Puntos
         <input type="number" class="form-control" placeholder="Puntos" v-model="puntos"><br>
       </div>

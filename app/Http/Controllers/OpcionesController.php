@@ -32,7 +32,7 @@ class OpcionesController extends Controller
         //
         $opciones=new Opciones();
         $opciones->id=$request->get('id');
-        $opciones->opciones=$request->get('opciones');
+        $opciones->opciones=$request->get('option');
         $opciones->puntos=$request->get('puntos');
         $opciones->save();
     }
@@ -61,7 +61,7 @@ class OpcionesController extends Controller
     {
         //
         $opciones=Opciones::find($id);
-        $opciones->opciones=$request->get('opciones');
+        $opciones->opciones=$request->get('option');
         $opciones->puntos=$request->get('puntos');
         $opciones->update();
     }
