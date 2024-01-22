@@ -36,11 +36,11 @@
                         <tr v-for="question in preguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category.name}}</th>
-                            <th><button class="btn" @click="editandopregunta(pregunta.id)">
+                            <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarpregunta(pregunta.id)">
+                            <th><button class="btn" @click="eliminarpregunta(question.id)">
 									<!-- <i class="fas fa-trash-alt"></i> -->
 									<i class="fa-duotone fa-trash"></i>
 								</button></th>
