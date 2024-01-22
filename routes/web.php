@@ -28,7 +28,7 @@ Route::get('home', function () {
 // apis
 Route::resource('apiCategory',CategoryController::class);
 Route::Resource('apiPreguntas',preguntasController::class);
-Route::resource('apiOpciones',OpcionesController::class);
+Route::Resource('apiOpciones',OpcionesController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');

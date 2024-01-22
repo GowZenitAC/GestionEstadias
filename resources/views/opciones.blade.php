@@ -34,17 +34,17 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="opcion in filtrOpciones">
-                            <th>@{{opcion.id}}</th>
-                            <th>@{{opcion.opciones}}</th>
-                            <th>@{{opcion.puntos}}</th>
+                        <tr v-for="option in filtroOpciones">
+                            <th>@{{option.id}}</th>
+                            <th>@{{option.option}}</th>
+                            <th>@{{option.puntos}}</th>
                             
 
-                            <th><button class="btn" @click="editandoOpciones(opciones.id)">
+                            <th><button class="btn" @click="editandoOpciones(option.id)">
 									
 									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarOpcion(opciones.id)">
+                            <th><button class="btn" @click="eliminarOpciones(option.id)">
 									
 									<i class="fa-duotone fa-trash"></i>
 								</button></th>
@@ -77,7 +77,7 @@
         Opción:
         <input type="text" class="form-control" placeholder="Opción" v-model="option"><br>
         Puntos
-        <input type="number" class="form-control" placeholder="Puntos" v-model="puntos"><br>
+        <input type="text" class="form-control" placeholder="Puntos" v-model="puntos"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
