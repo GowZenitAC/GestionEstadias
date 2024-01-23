@@ -26,27 +26,28 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0 rounded-start">ID</th>
+                            <!-- <th class="border-0 rounded-start">ID</th> -->
                             <th class="border-0 rounded-start">Opciones</th>
-                            <th class="border-0">Editar</th>
+                            <th class="border-0 rounded-start">Puntos</th>
+                            <th class="border-0 rounded-start">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Item -->
                         <tr v-for="option in filtroOpciones">
-                            <th>@{{option.id}}</th>
+                            <!-- <th>@{{option.id}}</th> -->
                             <th>@{{option.option}}</th>
                             <th>@{{option.puntos}}</th>
                             
 
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 									
-									<i class="fa-duotone fa-pen-to-square"></i>
+									<i class="fa-duotone fa-pen-to-square fa-xl"></i>
 								</button></th>
                             <th><button class="btn" @click="eliminarOpciones(option.id)">
 									
-									<i class="fa-duotone fa-trash"></i>
+									<i class="fa-duotone fa-trash fa-xl"></i>
 								</button></th>
                         </tr>
                         
@@ -76,15 +77,15 @@
      
         Opción:
         <input type="text" class="form-control" placeholder="Opción" v-model="option"><br>
-        Puntos
+        Puntos:
         <input type="text" class="form-control" placeholder="Puntos" v-model="puntos"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
        
-        <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true && option.trim() !== ''">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false && option.trim() !== ''">Guardar</button>
       </div>
     </div>
   </div>
