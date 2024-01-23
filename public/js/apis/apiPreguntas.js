@@ -79,7 +79,7 @@ var ruta = document.querySelector("[name=route]").value;
             });
             $('#modalPreguntas').modal('hide');
           },
-
+           
         
         },
 

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\preguntas;
+use App\Models\equipos;
 
-class preguntasController extends Controller
+class equiposController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class preguntasController extends Controller
     {
         //
         // Mostrar una lista de registros
-        return preguntas::all();
+        return equipos::all();
     }
 
     /**
@@ -34,10 +34,13 @@ class preguntasController extends Controller
     public function store(Request $request)
     {
         //
-        $preguntas=new preguntas();
-        $preguntas->id=$request->get('id');
-        $preguntas->pregunta=$request->get('pregunta');
-        $preguntas->save();
+        $equipos=new equipos();
+        $equipos->id_equipo=$request->get('id_equipo');
+        $equipos->nombre=$request->get('nombre');
+        // $equipos-> puntuacion=$request->get('puntuacion');
+        // $equipos-> tiempo=$request->get('tiempo');
+        
+        $equipos->save();
 
     }
 
@@ -47,7 +50,7 @@ class preguntasController extends Controller
     public function show(string $id)
     {
         //
-        return preguntas::find($id);
+        return equipos::find($id);
     }
 
     /**
@@ -64,18 +67,21 @@ class preguntasController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $preguntas=preguntas::find($id);
-        $preguntas->pregunta=$request->get('pregunta');
-        $preguntas->update();
+        $equipos=equipos::find($id);
+        $equipos->id_equipo=$request->get('id_equipo');
+        $equipos->nombre=$request->get('nombre');
+        // $equipos-> puntuacion=$request->get('puntuacion');
+        // $equipos-> tiempo=$request->get('tiempo');
+        
+        $equipos->update();
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
-        $preguntas=preguntas::find($id);
-        $preguntas->delete();
+        $equipos=equipos::find($id);
+        $equipos->delete();
     }
 }
