@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\equipos;
-
-class equiposController extends Controller
+use App\Models\Equipos;
+class equipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +12,8 @@ class equiposController extends Controller
     public function index()
     {
         //
-        // Mostrar una lista de registros
-        return equipos::all();
+        return Equipos::all();
+
     }
 
     /**
@@ -23,9 +22,6 @@ class equiposController extends Controller
     public function create()
     {
         //
-        // $category=new Category();
-        // $category->id=$request->get('id');
-        // $category->name=$request->get('name');
     }
 
     /**
@@ -33,15 +29,12 @@ class equiposController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $equipos=new equipos();
-        $equipos->id_equipo=$request->get('id_equipo');
-        $equipos->nombre=$request->get('nombre');
-        // $equipos-> puntuacion=$request->get('puntuacion');
-        // $equipos-> tiempo=$request->get('tiempo');
         
+        $equipos=new Equipos();
+        $equipos->id=$request->get('id');
+        $equipos->nombre=$request->get('nombre');
+       
         $equipos->save();
-
     }
 
     /**
@@ -50,7 +43,7 @@ class equiposController extends Controller
     public function show(string $id)
     {
         //
-        return equipos::find($id);
+        return Equipos::all();
     }
 
     /**
@@ -67,21 +60,19 @@ class equiposController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $equipos=equipos::find($id);
-        $equipos->id_equipo=$request->get('id_equipo');
+        $equipos=Equipos::find($id);
         $equipos->nombre=$request->get('nombre');
-        // $equipos-> puntuacion=$request->get('puntuacion');
-        // $equipos-> tiempo=$request->get('tiempo');
         
         $equipos->update();
     }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
-        $equipos=equipos::find($id);
+        $equipos=Equipos::find($id);
         $equipos->delete();
     }
 }

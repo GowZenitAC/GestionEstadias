@@ -1,5 +1,5 @@
 var ruta = document.querySelector("[name=route]").value;
- var apiequipo = ruta + '/apiequipo';  
+ var apiequipo = ruta + '/apiequipos';  
 
  new Vue({
     http: {
@@ -11,7 +11,7 @@ var ruta = document.querySelector("[name=route]").value;
     el:'#equipo',
     data:{
         titulo:'EQUIPOS',
-        id_equipo:'',
+        id:'',
         nombre:'',
         puntuacion:'',
         equipos:[],
@@ -36,27 +36,15 @@ var ruta = document.querySelector("[name=route]").value;
            $('#modalEquipos').modal('show');
          },
           
-         guardarequipo:function(){
-          var equipos = {
-            nombre:this.nombre
-          };
-          this.$http.post(apiequipo,equipos).then(function(json){
-            this.obtenerequipo();
-            this.name='';
-          }).catch(function(json){
-            console.log(equipos);
-          });
-          $('#modalEquipos').modal('hide');
-         },
          editandoequipo:function(id){
           this.agregando=false;
-          this.id_equipo=id;
+          this.id=id;
           this.$http.get(apiequipo + '/' + id).then(function(json){
             this.nombre=json.data.nombre;
           });
           $('#modalEquipos').modal('show');
          },
-         actualizarEquipo:function(){
+         actualizarequipo:function(){
           var jsonequipo = {nombre:this.nombre};
           this.$http.patch(apiequipo + '/' + this.id,jsonequipo).then(function(json){
             this.obtenerequipo();
@@ -75,6 +63,20 @@ var ruta = document.querySelector("[name=route]").value;
           }
         },
 
+
+         guardarequipo:function(){
+          var equipos = {
+            nombre:this.nombre
+          };
+          this.$http.post(apiequipo,equipos).then(function(json){
+            this.obtenerequipo();
+            this.nombre='';
+          }).catch(function(json){
+            console.log(equipos);
+          });
+          $('#modalEquipos').modal('hide');
+         },
+        
 
 
     },

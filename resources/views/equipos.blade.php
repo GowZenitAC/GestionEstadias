@@ -23,7 +23,7 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                        <th class="border-0 rounded-start">id equipo</th>
+                       
                             <th class="border-0 rounded-start">equipo</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
@@ -32,14 +32,14 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="equipo in equipos">
-                        <th>@{{equipo.id_equipo}}</th>
+                       
                             <th>@{{equipo.nombre}}</th>
                             
-                            <th><button class="btn" @click="editandoequipo(equipo.id_equipo)">
+                            <th><button class="btn" @click="editandoequipo(equipo.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarequipo(equipo.id_equipo)">
+                            <th><button class="btn" @click="eliminarequipo(equipo.id)">
 									<!-- <i class="fas fa-trash-alt"></i> -->
 									<i class="fa-duotone fa-trash"></i>
 								</button></th>
@@ -79,7 +79,7 @@
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> -->
         <button type="button" class="btn btn-primary" @click="guardarequipo()" v-if="agregando==true">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click="actualizarequipo()" v-if="agregando==false">Guardar</button>
+        <button type="button" class="btn btn-primary" @click=" actualizarequipo()" v-if="agregando==false">Guardar</button>
       </div>
     </div>
   </div>
