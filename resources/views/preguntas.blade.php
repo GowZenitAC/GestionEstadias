@@ -25,15 +25,17 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0 rounded-start">pregunta</th>
+                            <th class="border-0 rounded-start">Pregunta</th>
+                            <th class="border-0 rounded-start">Categoría</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="pregunta in pregunta">
-                            <th>@{{pregunta.pregunta}}</th>
+                        <tr v-for="question in preguntas">
+                            <th>@{{question.pregunta}}</th>
+                            <th>@{{question.category.name}}</th>
                             <th><button class="btn" @click="editandopregunta(pregunta.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
@@ -67,10 +69,12 @@
         </button>
       </div>
       <div class="modal-body">
-      Escriba el id:
-        <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br>
-        escriba la pregunta:
-        <input type="text" class="form-control" placeholder="escribe pregunta" v-model="pregunta"><br>
+        <span>Escriba la pregunta:</span>
+        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta"><br>
+        <select name="" v-model="category_id" class="form-select" id="">
+            <option selected value="">Selecciona una categoria</option>
+            <option v-for="category in categories" :value="category.id">@{{category.name}}</option>
+        </select>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>

@@ -1,10 +1,11 @@
 @extends('layout.app')
-@section('titulo','Categorías')
+@section('titulo','Opciones')
 @section('contenido')
 
 <!-- INICIA VUE -->
-<div id="categorias">
+<div id="opcion">
     <!--inicio de card-->
+    
     <div class="col-12 mb-4">
         <div class="card border-0 shadow">
             <div class="card-header">
@@ -14,7 +15,7 @@
                     </div>
                     <div class="col text-end">
                         <!-- Button Modal -->
-<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar categoría</button>
+<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar opciones</button>
 <!-- Modal Content -->
                        
                     </div>
@@ -25,21 +26,27 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0 rounded-start">Nombre</th>
-                            <th class="border-0">Editar</th>
+                            <!-- <th class="border-0 rounded-start">ID</th> -->
+                            <th class="border-0 rounded-start">Opciones</th>
+                            <th class="border-0 rounded-start">Puntos</th>
+                            <th class="border-0 rounded-start">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="category in filtroCategory">
-                            <th>@{{category.name}}</th>
-                            <th><button class="btn" @click="editandoCategory(category.id)">
-									<!-- <i class="fa-solid fa-file-pen"></i> -->
+                        <tr v-for="option in filtroOpciones">
+                            <!-- <th>@{{option.id}}</th> -->
+                            <th>@{{option.option}}</th>
+                            <th>@{{option.puntos}}</th>
+                            
+
+                            <th><button class="btn" @click="editandoOpciones(option.id)">
+									
 									<i class="fa-duotone fa-pen-to-square fa-xl"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarCategory(category.id)">
-									<!-- <i class="fas fa-trash-alt"></i> -->
+                            <th><button class="btn" @click="eliminarOpciones(option.id)">
+									
 									<i class="fa-duotone fa-trash fa-xl"></i>
 								</button></th>
                         </tr>
@@ -56,27 +63,29 @@
     <!-- Button Modal -->
 <!-- Modal Content -->
 <!-- INICIA VENTANA MODAL -->
-<div class="modal" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalOpciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar Categoría</h5>
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar categoría</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar opción</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar opción</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           
         </button>
       </div>
       <div class="modal-body">
      
-        Nombre de la categoría:
-        <input type="text" class="form-control" placeholder="Nombre de la categoria" v-model="name"><br>
+        Opción:
+        <input type="text" class="form-control" placeholder="Opción" v-model="option"><br>
+        Puntos:
+        <input type="text" class="form-control" placeholder="Puntos" v-model="puntos"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
        
-        <button type="button" class="btn btn-primary" @click="guardarCategory()" v-if="agregando==true && name.trim() !== ''">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true && option.trim() !== ''">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click="actualizarCategory()" v-if="agregando==false && name.trim() !== ''">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false && option.trim() !== ''">Guardar</button>
       </div>
     </div>
   </div>
@@ -93,7 +102,7 @@
 
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
-<script type="text/javascript" src="js/apis/apiCategory.js"></script>
+<script type="text/javascript" src="js/apis/apiOpciones.js"></script>
 
 @endpush
 

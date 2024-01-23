@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,15 +12,15 @@ class preguntas extends Model
     protected $table='preguntas';
     protected $primaryKey='id';
     public $incrementing=true;
-    protected $With=['Category'];
+    protected $with=['Category'];
     public $timestamps=false;
 
     protected $fillable=[
     	'id',
         'pregunta',
-        'id_categoria'
+        'category_id'
     ];
     public function Category(){
-        return $this->belongsTo(Category::class, 'id','id');
+        return $this->belongsTo(Category::class);    
     }
 }

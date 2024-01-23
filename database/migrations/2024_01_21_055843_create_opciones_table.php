@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('opciones', function (Blueprint $table) {
+            $table->id();
+            $table->string('option');
+            $table->integer('puntos');
+
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('opciones');
     }
 };

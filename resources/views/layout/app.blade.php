@@ -7,7 +7,7 @@
     <title>@yield('titulo')</title>
     <!-- inicio font -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" >
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <!-- fin font -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -125,6 +125,16 @@
                     </a>
                 </li>
                 <!-- fin boton de categorias -->
+                <!-- inicio boton de Opciones -->
+                <li class="nav-item ">
+                    <a href="opciones" class="nav-link">
+                        <span class="sidebar-icon">
+                        <i class="fa-duotone fa-option"></i>
+                        </span>
+                        <span class="sidebar-text">Opciones</span>
+                    </a>
+                </li>
+                <!-- fin boton de Opciones -->
                 <li class="nav-item">
                     <a href="https://demo.themesberg.com/volt-pro/pages/kanban.html" target="_blank" class="nav-link d-flex justify-content-between">
                         <span>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\preguntas;
+use App\Models\Opciones;
 
-class preguntasController extends Controller
+class OpcionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,7 @@ class preguntasController extends Controller
     public function index()
     {
         //
-        // Mostrar una lista de registros
-        // $preguntas = preguntas::all();
-        return preguntas::all();
+        return Opciones::all();
     }
 
     /**
@@ -24,9 +22,6 @@ class preguntasController extends Controller
     public function create()
     {
         //
-        // $category=new Category();
-        // $category->id=$request->get('id');
-        // $category->name=$request->get('name');
     }
 
     /**
@@ -35,11 +30,11 @@ class preguntasController extends Controller
     public function store(Request $request)
     {
         //
-        $preguntas=new preguntas();
-        $preguntas->pregunta=$request->get('pregunta');
-        $preguntas->category_id=$request->get('category_id');
-        $preguntas->save();
-
+        $opciones=new Opciones();
+        $opciones->id=$request->get('id');
+        $opciones->option=$request->get('option');
+        $opciones->puntos=$request->get('puntos');
+        $opciones->save();
     }
 
     /**
@@ -48,7 +43,7 @@ class preguntasController extends Controller
     public function show(string $id)
     {
         //
-        return preguntas::find($id);
+        return Opciones::find($id);
     }
 
     /**
@@ -65,10 +60,10 @@ class preguntasController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $preguntas=preguntas::find($id);
-        $preguntas->pregunta=$request->get('pregunta');
-        $preguntas->category_id=$request->get('category_id');
-        $preguntas->update();
+        $opciones=Opciones::find($id);
+        $opciones->option=$request->get('option');
+        $opciones->puntos=$request->get('puntos');
+        $opciones->update();
     }
 
     /**
@@ -77,7 +72,7 @@ class preguntasController extends Controller
     public function destroy(string $id)
     {
         //
-        $preguntas=preguntas::find($id);
-        $preguntas->delete();
+        $opciones=Opciones::find($id);
+        $opciones->delete();
     }
 }
