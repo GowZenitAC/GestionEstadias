@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('preguntas', function (Blueprint $table) {
             $table->id();
             $table->string('pregunta');
+            $table->string('imagen_pregunta')->nullable();
             $table->foreignIdFor(Category::class);
         });
     }

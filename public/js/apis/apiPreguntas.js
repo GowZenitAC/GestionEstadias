@@ -20,6 +20,7 @@ new Vue({
         preguntas: [],
         categories: [],
         category_id: "",
+        imagen_pregunta: "",
     },
 
     created: function () {
@@ -54,6 +55,8 @@ new Vue({
         mostrarModal: function () {
             this.agregando = true;
             this.pregunta = "";
+            this.category_id = "";
+            this.imagen_pregunta = "";
             $("#modalPreguntas").modal("show");
         },
 
@@ -93,16 +96,21 @@ new Vue({
                     });
             }
         },
+        cargarImagen(e){
+            this.imagen_pregunta = e.target.files[0];
+        },
         guardarpregunta: function () {
-            var pregunta = {
-                pregunta: this.pregunta,
-                category_id: this.category_id,
-            };
+            const pregunta = new FormData();
+            pregunta.append("pregunta", this.pregunta);
+            pregunta.append("category_id", this.category_id);
+            pregunta.append("imagen_pregunta", this.imagen_pregunta);
             this.$http
-                .post(apiPreguntas, pregunta)
+                .post(apiPreguntas, pregunta,)
                 .then(function (json) {
                     this.obtenerpregunta();
                     this.pregunta = "";
+                    this.category_id = "";
+                    this.imagen_pregunta = "";
                 })
                 .catch(function (json) {
                     console.log(pregunta);
