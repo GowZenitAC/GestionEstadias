@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="question in filtroPreguntas">
+                        <tr v-for="question in preguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category.name}}</th>
                             <th><img :src="question.imagen_pregunta" width="50"></th>
