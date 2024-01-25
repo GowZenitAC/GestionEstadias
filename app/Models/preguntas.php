@@ -18,6 +18,7 @@ class preguntas extends Model
     protected $fillable=[
     	'id',
         'pregunta',
+        'imagen_pregunta',
         'category_id'
     ];
     public function Category(){

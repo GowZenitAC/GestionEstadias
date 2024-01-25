@@ -1,127 +1,129 @@
 var ruta = document.querySelector("[name=route]").value;
- var apiPreguntas = ruta + '/apiPreguntas';
- let apiCategory = ruta + '/apiCategory';
- 
- new Vue({
+var apiPreguntas = ruta + "/apiPreguntas";
+let apiCategory = ruta + "/apiCategory";
+
+new Vue({
     http: {
         headers: {
-          'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
-        }
-      },
-      el:"#preguntas",
-      
-      data:{
-        titulo:'Preguntas',
-        id:'',
-        pregunta:'',
-        buscar:'',
-        preguntas:[],
-        categories:[],
-        category_id:'',
-        agregando:true
+            "X-CSRF-TOKEN": document
+                .querySelector("#token")
+                .getAttribute("value"),
+        },
+    },
+    el: "#preguntas",
+
+    data: {
+        titulo: "Preguntas",
+        id: "",
+        pregunta: "",
+        buscar: "",
+        preguntas: [],
+        categories: [],
+        category_id: "",
+        imagen_pregunta: "",
     },
 
-    created:function(){
+    created: function () {
         this.obtenerpregunta();
         this.getCategories();
-      },
-      //funcion que se usa cuando se crea la pagina
-      methods:{
-
-        obtenerpregunta:function(){
-          this.$http.get(apiPreguntas).then(function(json){
-            this.preguntas=json.data;
-            console.log(json.data) 
-          }).catch(function(json){
-            console.log(json);
-          });
-
+    },
+    //funcion que se usa cuando se crea la pagina
+    methods: {
+        obtenerpregunta: function () {
+            this.$http
+                .get(apiPreguntas)
+                .then(function (json) {
+                    this.preguntas = json.data;
+                    console.log(json.data);
+                })
+                .catch(function (json) {
+                    console.log(json);
+                });
         },
-        getCategories(){
-          this.$http.get(apiCategory).then(function(json){
-            this.categories=json.data;
-            console.log(json.data)
-          }).catch(function(json){
-            console.log(json);
-          });
+        getCategories() {
+            this.$http
+                .get(apiCategory)
+                .then(function (json) {
+                    this.categories = json.data;
+                    console.log(json.data);
+                })
+                .catch(function (json) {
+                    console.log(json);
+                });
         },
-      
-            mostrarModal:function(){
-             this.agregando=true;
-              this.pregunta='';
-              $('#modalPreguntas').modal('show');
-            },
 
-            editandopregunta:function(id){
-              console.log('recibido',id);
-            this.agregando=false;
+        mostrarModal: function () {
+            this.agregando = true;
+            this.pregunta = "";
+            this.category_id = "";
+            this.imagen_pregunta = "";
+            $("#modalPreguntas").modal("show");
+        },
+
+        editandopregunta: function (id) {
+            this.agregando = false;
             this.id = id;
-            this.$http.get(apiPreguntas + '/' + id).then(function(json){
-              this.pregunta=json.data.pregunta;
-              this.category_id=json.data.category_id;
-              // console.log(this.pregunta);
+            this.$http.get(apiPreguntas + "/" + id).then(function (json) {
+                this.pregunta = json.data.pregunta;
+                this.category_id = json.data.category_id;
             });
-            $('#modalPreguntas').modal('show');
-          },
-
-          actualizarpregunta: function () {
-            var jsonpreguntas = { pregunta: this.pregunta,
-                                  category_id: this.category_id};
-              this.$http.patch(apiPreguntas + '/' + this.id,jsonpreguntas).then(function(json){
-                this.obtenerpregunta();
-              });
-              $('#modalPreguntas').modal('hide');
-          },
-          // actualizarpregunta:function(){
-          //   var jsonpregunta = {pregunta:this.pregunta};
-          //   this.$http.patch(apiPreguntas + '/' + this.id,jsonpregunta).then(function(json){
-          //     this.obtenerpregunta();
-          //   });
-          //   $('#modalPreguntas').modal('hide');
-          // },
-          eliminarpregunta:function(id){
-            var confir = confirm('Desaea eliminar?');
-            
-            if (confir){
-              this.$http.delete(apiPreguntas + '/' + id).then(function(json){
-                this.obtenerpregunta();
-              }).catch(function(json){
-                console.log(json);
-              });
-            }
-          },
-          guardarpregunta:function(){
-            var pregunta = {
-              pregunta:this.pregunta,
-              category_id:this.category_id
-            };
-            this.$http.post(apiPreguntas,pregunta).then(function(json){
-              this.obtenerpregunta();
-              this.pregunta='';
-            }).catch(function(json){
-              console.log(pregunta);
-            });
-            $('#modalPreguntas').modal('hide');
-          },
-
-        
+            $("#modalPreguntas").modal("show");
         },
+        actualizarpregunta: function () {
+            var jsonpregunta = {
+                id: this.id,
+                pregunta: this.pregunta,
+                category_id: this.category_id,
+            };
+            this.$http
+                .patch(apiPreguntas + "/" + this.id, jsonpregunta)
+                .then(function (json) {
+                    this.obtenerpregunta();
+                });
+            $("#modalPreguntas").modal("hide");
+        },
+        eliminarpregunta: function (id) {
+            var confir = confirm("Desaea eliminar?");
 
-        computed:{
+            if (confir) {
+                this.$http
+                    .delete(apiPreguntas + "/" + id)
+                    .then(function (json) {
+                        this.obtenerpregunta();
+                    })
+                    .catch(function (json) {
+                        console.log(json);
+                    });
+            }
+        },
+        cargarImagen(e){
+            this.imagen_pregunta = e.target.files[0];
+        },
+        guardarpregunta: function () {
+            const pregunta = new FormData();
+            pregunta.append("pregunta", this.pregunta);
+            pregunta.append("category_id", this.category_id);
+            pregunta.append("imagen_pregunta", this.imagen_pregunta);
+            this.$http
+                .post(apiPreguntas, pregunta,)
+                .then(function (json) {
+                    this.obtenerpregunta();
+                    this.pregunta = "";
+                    this.category_id = "";
+                    this.imagen_pregunta = "";
+                })
+                .catch(function (json) {
+                    console.log(pregunta);
+                });
+            $("#modalPreguntas").modal("hide");
+        },
+    },
 
-          filtroPreguntas:function(){
-            return this.preguntas.filter((preguntas)=>{
-              return preguntas.pregunta.toLowerCase().match(this.buscar.toLowerCase().trim())
-            });
-          },
-
-          // filtropregunta:function(){
-          //   return this.pregunta.filter((pregunta)=>{
-          //     return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
-          //   });
-          // },
-      
-    }
-  })
-
-
+    computed: {
+        // filtropregunta:function(){
+        //   return this.pregunta.filter((pregunta)=>{
+        //     return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
+        //   });
+        // },
+    },
+});
