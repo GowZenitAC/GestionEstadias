@@ -33,7 +33,7 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="question in preguntas">
+                        <tr v-for="question in filtroPreguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category.name}}</th>
                             <th><button class="btn" @click="editandopregunta(pregunta.id)">

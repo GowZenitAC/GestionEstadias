@@ -58,17 +58,27 @@ var ruta = document.querySelector("[name=route]").value;
             this.id = id;
             this.$http.get(apiPreguntas + '/' + id).then(function(json){
               this.pregunta=json.data.pregunta;
+              this.category_id=json.data.category_id;
               // console.log(this.pregunta);
             });
             $('#modalPreguntas').modal('show');
           },
-          actualizarpregunta:function(){
-            var jsonpregunta = {pregunta:this.pregunta};
-            this.$http.patch(apiPreguntas + '/' + this.id,jsonpregunta).then(function(json){
-              this.obtenerpregunta();
-            });
-            $('#modalPreguntas').modal('hide');
+
+          actualizarpregunta: function () {
+            var jsonpreguntas = { pregunta: this.pregunta,
+                                  category_id: this.category_id};
+              this.$http.patch(apiPreguntas + '/' + this.id,jsonpreguntas).then(function(json){
+                this.obtenerpregunta();
+              });
+              $('#modalPreguntas').modal('hide');
           },
+          // actualizarpregunta:function(){
+          //   var jsonpregunta = {pregunta:this.pregunta};
+          //   this.$http.patch(apiPreguntas + '/' + this.id,jsonpregunta).then(function(json){
+          //     this.obtenerpregunta();
+          //   });
+          //   $('#modalPreguntas').modal('hide');
+          // },
           eliminarpregunta:function(id){
             var confir = confirm('Desaea eliminar?');
             
@@ -98,6 +108,12 @@ var ruta = document.querySelector("[name=route]").value;
         },
 
         computed:{
+
+          filtroPreguntas:function(){
+            return this.preguntas.filter((preguntas)=>{
+              return preguntas.pregunta.toLowerCase().match(this.buscar.toLowerCase().trim())
+            });
+          },
 
           // filtropregunta:function(){
           //   return this.pregunta.filter((pregunta)=>{
