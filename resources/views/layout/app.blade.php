@@ -123,7 +123,7 @@
                                     <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="sidebar-text">Preguntas</span>
+                            <span class="sidebar-text">Preguntas prepa</span>
                         </span>
                         <span class="link-arrow">
                             <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
