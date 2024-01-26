@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTSUController;
 use App\Http\Controllers\OpcionesController;
 use App\Http\Controllers\preguntasController;
+use App\Http\Controllers\OpcionesTSUController;
+use App\Http\Controllers\preguntasTSUController;
 
 
 /*
@@ -33,6 +35,8 @@ Route::Resource('apiOpciones',OpcionesController::class);
 
 //apis tsu
 Route::resource('apiCategoryTSU',CategoryTSUController::class);
+Route::Resource('apiOpcionesTSU',OpcionesTSUController::class);
+Route::Resource('apiPreguntasTSU',preguntasTSUController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
@@ -41,7 +45,9 @@ Route::view('preguntas','preguntas')->middleware('auth');
 Route::view('opciones','opciones')->middleware('auth');
 
 //vistas tsu
-Route::view('categoriasTSU','categoriasTSU')->middleware('auth');
+Route::view('categoriasTSU','categoriasTSU')->middleware('auth')->middleware('auth');
+Route::view('opcionesTSU','opcionesTSU')->middleware('auth')->middleware('auth');
+Route::view('preguntasTSU','preguntasTSU')->middleware('auth')->middleware('auth');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])

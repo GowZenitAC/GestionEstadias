@@ -139,7 +139,7 @@
                                     <span class="sidebar-icon">
                                         <i class="fa-duotone fa-question"></i>
                                     </span>
-                                    <span class="sidebar-text">Ejercicios</span>
+                                    <span class="sidebar-text">Preguntas</span>
                                 </a>
                             </li>
                             <!-- fin boton de categorias -->
@@ -149,7 +149,7 @@
                                     <span class="sidebar-icon">
                                         <i class="fa-regular fa-list"></i>
                                     </span>
-                                    <span class="sidebar-text">Temas</span>
+                                    <span class="sidebar-text">Categorías</span>
                                 </a>
                             </li>
                             <!-- fin boton de categorias -->
@@ -159,7 +159,7 @@
                                     <span class="sidebar-icon">
                                         <i class="fa-duotone fa-option"></i>
                                     </span>
-                                    <span class="sidebar-text">Incisos</span>
+                                    <span class="sidebar-text">Opciones</span>
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->
@@ -192,7 +192,7 @@
                                     <span class="sidebar-icon">
                                         <i class="fa-duotone fa-question"></i>
                                     </span>
-                                    <span class="sidebar-text">Ejercicios</span>
+                                    <span class="sidebar-text">Preguntas</span>
                                 </a>
                             </li>
                             <!-- fin boton de categorias -->
@@ -212,7 +212,7 @@
                                     <span class="sidebar-icon">
                                         <i class="fa-duotone fa-option"></i>
                                     </span>
-                                    <span class="sidebar-text">Incisos</span>
+                                    <span class="sidebar-text">Opciones</span>
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->

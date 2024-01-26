@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class CategoryTSU extends Model
+class OpcionesTSU extends Model
 {
-    protected $table='categoriestsu';
+    protected $table='opcionestsu';
     protected $primaryKey='id';
     public $incrementing=true;
 
@@ -15,13 +15,9 @@ class CategoryTSU extends Model
 
     protected $fillable=[
     	'id',
-        'nametsu'
+        'optiontsu',
+        'puntostsu',
     ];
-
-    public function preguntasTSU(){
-        return $this->hasMany(preguntasTSU::class);
-
-    }
     
 
 }
