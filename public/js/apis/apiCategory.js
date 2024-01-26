@@ -47,6 +47,7 @@ new Vue({
           this.id=id;
           this.$http.get(apiCategory + '/' + id).then(function(json){
             this.name=json.data.name;
+            console.log(this.name);
           });
           $('#modalCategorias').modal('show');
         },
