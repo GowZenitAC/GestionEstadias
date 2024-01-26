@@ -14,8 +14,8 @@ class preguntasController extends Controller
     {
         //
         // Mostrar una lista de registros
-        // $preguntas = preguntas::all();
-        return preguntas::all();
+        $preguntas = preguntas::all();
+        return $preguntas;
     }
 
     /**

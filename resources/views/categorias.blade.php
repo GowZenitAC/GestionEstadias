@@ -36,11 +36,11 @@
                             <th>@{{category.name}}</th>
                             <th><button class="btn" @click="editandoCategory(category.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
-									<i class="fa-duotone fa-pen-to-square fa-xl"></i>
+									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
                             <th><button class="btn" @click="eliminarCategory(category.id)">
 									<!-- <i class="fas fa-trash-alt"></i> -->
-									<i class="fa-duotone fa-trash fa-xl"></i>
+									<i class="fa-duotone fa-trash"></i>
 								</button></th>
                         </tr>
                         
