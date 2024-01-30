@@ -24,4 +24,8 @@ class preguntas extends Model
     public function Category(){
         return $this->belongsTo(Category::class);    
     }
+
+    public function Option(){
+        return $this->hasMany(Opciones::class);
+    }
 }

@@ -1,5 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
   var apiOpciones = ruta + '/apiOpciones';  
+  var apiPreguntas = ruta + '/apiPreguntas';
 
 new Vue({
     http: {
@@ -14,14 +15,16 @@ new Vue({
          titulo:'Opciones',
          id:'',
          option:'',
-         puntos:'',
+         points:0,
          buscar:'',
          opciones:[],
-          
+         questions:[],
+         preguntas_id:""
       },
 
       created:function(){
         this.obtenerOpciones();
+        this.getQuestions();
       },
 
       methods:{
@@ -33,6 +36,15 @@ new Vue({
             }).catch(function(json){
                 console.log(json);
             });
+        },
+        
+        getQuestions(){
+            this.$http.get(apiPreguntas).then(function(json){
+                this.questions=json.data;
+                console.log(json.data)
+            }).catch(function(json){
+                console.log(json.error);
+            })
         },
 
         mostrarModal:function(){
@@ -46,15 +58,18 @@ new Vue({
             this.id=id;
             this.$http.get(apiOpciones + '/' + id).then(function(json){
                 this.option=json.data.option;
+                this.points=json.data.points;
+                this.preguntas_id=json.data.preguntas_id;
                 console.log(this.option);
             });
             $('#modalOpciones').modal('show');
         },
 
         actualizarOpciones: function () {
-            var jsonOpciones = {
+            const jsonOpciones = {
                 option: this.option,
-                puntos: this.puntos
+                points: this.points,
+                preguntas_id: this.preguntas_id
             };
         
             this.$http.patch(apiOpciones + '/' + this.id, jsonOpciones)
@@ -125,9 +140,10 @@ new Vue({
         },
 
         guardarOpciones: function() {
-            var opciones = {
+            const opciones = {
                 option: this.option,
-                puntos: this.puntos
+                points: this.points,
+                preguntas_id: this.preguntas_id
             };
         
             this.$http.post(apiOpciones, opciones)
@@ -145,7 +161,8 @@ new Vue({
                     
                     // Limpia los campos después de guardar
                     this.option = '';
-                    this.puntos = '';
+                    this.points = '';
+                    this.preguntas_id = '';
                 })
                 .catch(function(error) {
                     // Muestra un SweetAlert de error en caso de fallo
