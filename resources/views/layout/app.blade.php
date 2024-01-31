@@ -216,6 +216,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->
+                            <!-- inicio boton de carreras -->
+                            <li class="nav-item ">
+                                <a href="carreras" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-duotone fa-graduation-cap"></i>
+                                    </span>
+                                    <span class="sidebar-text">Carreras</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de carreras -->
                         </ul>
         </div>
       </li>
