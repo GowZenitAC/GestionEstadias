@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryTSUController;
+use App\Http\Controllers\OpcionesController;
+use App\Http\Controllers\OpcionesTSUController;
+use App\Http\Controllers\preguntasController;
+use App\Http\Controllers\PreguntasTSUController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//rutas preparatorias
+Route::apiResource('preguntas', preguntasController::class);
+Route::apiResource('categorias', CategoryController::class);
+Route::apiResource('opciones', OpcionesController::class);
+
+//rutas para TSU
+Route::apiResource('preguntasTSU', PreguntasTSUController::class);
+Route::apiResource('categoriasTSU', CategoryTSUController::class);
+Route::apiResource('opcionesTSU', OpcionesTSUController::class);
+
