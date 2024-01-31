@@ -34,6 +34,7 @@ class OpcionesTSUController extends Controller
         $opciones->id=$request->get('id');
         $opciones->optiontsu=$request->get('optiontsu');
         $opciones->puntostsu=$request->get('puntostsu');
+        $opciones->pregunta_tsu_id=$request->get('pregunta_tsu_id');
         $opciones->save();
     }
 
@@ -63,6 +64,7 @@ class OpcionesTSUController extends Controller
         $opciones=OpcionesTSU::find($id);
         $opciones->optiontsu=$request->get('optiontsu');
         $opciones->puntostsu=$request->get('puntostsu');
+        $opciones->pregunta_tsu_id=$request->get('pregunta_tsu_id');
         $opciones->update();
     }
 

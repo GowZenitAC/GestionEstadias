@@ -17,11 +17,15 @@ class preguntasTSU extends Model
 
     protected $fillable=[
     	'id',
-        'preguntatsu',
+        'pregunta',
         'imagen_preguntatsu',
         'category_t_s_u_id',
     ];
     public function CategoryTSU(){
         return $this->belongsTo(CategoryTSU::class);    
+    }
+
+    public function OptionTSU(){
+        return $this->hasMany(OpcionesTSU::class);
     }
 }

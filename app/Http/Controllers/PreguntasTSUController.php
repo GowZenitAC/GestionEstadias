@@ -32,7 +32,7 @@ class PreguntasTSUController extends Controller
     {
         //
         $preguntas = new PreguntasTSU();
-        $preguntas->preguntatsu = $request->get('preguntatsu');
+        $preguntas->pregunta = $request->get('pregunta');
         $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
         if($request->hasFile('imagen_preguntatsu')){
             $imagen = $request->file('imagen_preguntatsu');
@@ -68,7 +68,7 @@ class PreguntasTSUController extends Controller
     {
         //
         $preguntas = PreguntasTSU::find($id);
-        $preguntas->preguntatsu = $request->get('preguntatsu');
+        $preguntas->pregunta = $request->get('pregunta');
         $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
         if($request->hasFile('imagen_preguntatsu')){
             $imagen = $request->file('imagen_preguntatsu');

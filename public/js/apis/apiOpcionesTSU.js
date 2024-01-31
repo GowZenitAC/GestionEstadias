@@ -1,6 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
   var apiOpcionesTSU = ruta + '/apiOpcionesTSU';  
-
+  var apiPreguntasTSU = ruta + '/apiPreguntasTSU';
 new Vue({
     http: {
         headers: {
@@ -17,11 +17,13 @@ new Vue({
          puntostsu:'',
          buscar:'',
          opciones:[],
-          
+         tsu_questions:[],    
+         pregunta_tsu_id:""    
       },
 
       created:function(){
         this.obtenerOpciones();
+        this.getTsuQuestions();
       },
 
       methods:{
@@ -33,6 +35,15 @@ new Vue({
             }).catch(function(json){
                 console.log(json);
             });
+        },
+
+        getTsuQuestions(){
+            this.$http.get(apiPreguntasTSU).then(function(json){
+                this.tsu_questions=json.data;
+                console.log(json.data)
+            }).catch(function(json){
+                console.log(json);
+            })
         },
 
         mostrarModal:function(){
@@ -125,9 +136,10 @@ new Vue({
         },
 
         guardarOpciones: function() {
-            var opciones = {
+            const opciones = {
                 optiontsu: this.optiontsu,
-                puntostsu: this.puntostsu
+                puntostsu: this.puntostsu,
+                pregunta_tsu_id: this.pregunta_tsu_id
             };
         
             this.$http.post(apiOpcionesTSU, opciones)
@@ -146,6 +158,7 @@ new Vue({
                     // Limpia los campos después de guardar
                     this.optiontsu = '';
                     this.puntostsu = '';
+                    this.preguntas_tsu_id = '';
                 })
                 .catch(function(error) {
                     // Muestra un SweetAlert de error en caso de fallo

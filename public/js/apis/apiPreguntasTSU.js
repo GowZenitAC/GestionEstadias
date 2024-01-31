@@ -15,7 +15,7 @@ new Vue({
     data: {
         titulo: "Preguntas TSU",
         id: "",
-        preguntatsu: "",
+        pregunta: "",
         buscar: "",
         preguntas: [],
         categories: [],
@@ -65,7 +65,7 @@ new Vue({
             this.agregando = false;
             this.id = id;
             this.$http.get(apiPreguntasTSU + "/" + id).then(function (json) {
-                this.preguntatsu = json.data.preguntatsu;
+                this.pregunta = json.data.pregunta;
                 this.category_t_s_u_id = json.data.category_t_s_u_id;
                 this.imagen_preguntatsu= json.data.imagen_preguntatsu;
             });
@@ -74,7 +74,7 @@ new Vue({
         actualizarpregunta: function () {
             var jsonpregunta = {
                 id: this.id,
-                preguntatsu: this.preguntatsu,
+                pregunta: this.pregunta,
                 category_t_s_u_id: this.category_t_s_u_id,
                 imagen_preguntatsu: this.imagen_preguntatsu,
             };
@@ -104,14 +104,14 @@ new Vue({
         },
         guardarpregunta: function () {
             const preguntatsu = new FormData();
-            preguntatsu.append("preguntatsu", this.preguntatsu);
+            preguntatsu.append("pregunta", this.pregunta);
             preguntatsu.append("category_t_s_u_id", this.category_t_s_u_id);
             preguntatsu.append("imagen_preguntatsu", this.imagen_preguntatsu);
             this.$http
                 .post(apiPreguntasTSU, preguntatsu,)
                 .then(function (json) {
                     this.obtenerpregunta();
-                    this.preguntatsu = "";
+                    this.pregunta = "";
                     this.category_t_s_u_id = "";
                     this.imagen_preguntatsu = "";
                 })

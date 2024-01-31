@@ -35,7 +35,7 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="question in preguntas">
-                            <th>@{{question.preguntatsu}}</th>
+                            <th>@{{question.pregunta}}</th>
                             <th>@{{question.category_t_s_u.nametsu}}</th>
                             <th><img :src="question.imagen_preguntatsu" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
@@ -72,7 +72,7 @@
       </div>
       <div class="modal-body">
         <span>Pregunta:</span>
-        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="preguntatsu">
+        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta">
         <span>Imagen (Opcional):</span>
         <input type="file" :v-model="imagen_preguntatsu" @change="cargarImagen" src="" class="form-control my-2" alt="">
         <span>Categoría:</span>

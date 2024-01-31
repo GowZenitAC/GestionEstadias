@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\preguntasTSU;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('optiontsu');
             $table->integer('puntostsu');
-            $table->timestamps();
+            $table->foreignId('pregunta_tsu_id')->constrained('preguntastsu')->onDelete('cascade');
+           
         });
     }
 
