@@ -17,6 +17,11 @@ class Carreras extends Model
     	'id',
         'carrera'
     ];
+
+    public function preguntas(){
+        return $this->hasMany(preguntas::class);
+
+    }
     
 
 }

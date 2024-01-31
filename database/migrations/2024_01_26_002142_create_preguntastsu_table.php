@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Carreras;
 use App\Models\CategoryTSU;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->string('pregunta');
             $table->string('imagen_preguntatsu')->nullable();
             $table->foreignIdFor(CategoryTSU::class);
+            $table->foreignIdFor(Carreras::class);
         });
     }
 

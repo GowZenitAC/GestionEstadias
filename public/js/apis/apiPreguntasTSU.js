@@ -1,6 +1,7 @@
 var ruta = document.querySelector("[name=route]").value;
 var apiPreguntasTSU = ruta + "/apiPreguntasTSU";
 let apiCategoryTSU = ruta + "/apiCategoryTSU";
+let apiCarreras = ruta + "/apiCarreras";
 
 new Vue({
     http: {
@@ -19,7 +20,9 @@ new Vue({
         buscar: "",
         preguntas: [],
         categories: [],
+        carreras:[],
         category_t_s_u_id: "",
+        carreras_id: "",
         imagen_preguntatsu: "",
         agregando: true,
     },
@@ -27,6 +30,7 @@ new Vue({
     created: function () {
         this.obtenerpregunta();
         this.getCategories();
+        this.getCarreras();
     },
     //funcion que se usa cuando se crea la pagina
     methods: {
@@ -52,11 +56,23 @@ new Vue({
                     console.log(json);
                 });
         },
+        getCarreras() {
+            this.$http
+                .get(apiCarreras)
+                .then(function (json) {
+                    this.carreras = json.data;
+                    console.log(json.data);
+                })
+                .catch(function (json) {
+                    console.log(json);
+                });
+        },
 
         mostrarModal: function () {
             this.agregando = true;
             this.preguntatsu = "";
             this.category_t_s_u_id = "";
+            this.carreras_id = "";
             this.imagen_preguntatsu = "";
             $("#modalPreguntas").modal("show");
         },
@@ -67,6 +83,7 @@ new Vue({
             this.$http.get(apiPreguntasTSU + "/" + id).then(function (json) {
                 this.pregunta = json.data.pregunta;
                 this.category_t_s_u_id = json.data.category_t_s_u_id;
+                this.carreras_id = json.data.carreras_id;
                 this.imagen_preguntatsu= json.data.imagen_preguntatsu;
             });
             $("#modalPreguntas").modal("show");
@@ -76,6 +93,7 @@ new Vue({
                 id: this.id,
                 pregunta: this.pregunta,
                 category_t_s_u_id: this.category_t_s_u_id,
+                carreras_id: this.carreras_id,
                 imagen_preguntatsu: this.imagen_preguntatsu,
             };
             this.$http
@@ -106,6 +124,7 @@ new Vue({
             const preguntatsu = new FormData();
             preguntatsu.append("pregunta", this.pregunta);
             preguntatsu.append("category_t_s_u_id", this.category_t_s_u_id);
+            preguntatsu.append("carreras_id", this.carreras_id);
             preguntatsu.append("imagen_preguntatsu", this.imagen_preguntatsu);
             this.$http
                 .post(apiPreguntasTSU, preguntatsu,)
@@ -113,6 +132,7 @@ new Vue({
                     this.obtenerpregunta();
                     this.pregunta = "";
                     this.category_t_s_u_id = "";
+                    this.carreras_id = "";
                     this.imagen_preguntatsu = "";
                 })
                 .catch(function (json) {

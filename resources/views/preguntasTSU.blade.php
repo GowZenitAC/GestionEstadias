@@ -27,6 +27,7 @@
                         <tr>
                             <th class="border-0 rounded-start">Pregunta</th>
                             <th class="border-0 rounded-start">Categoría</th>
+                            <th class="border-0 rounded-start">Carreras</th>
                             <th class="border-0 rounded-start">Imagen</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
@@ -37,6 +38,7 @@
                         <tr v-for="question in preguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category_t_s_u.nametsu}}</th>
+                            <th>@{{question.carreras.carrera}}</th>
                             <th><img :src="question.imagen_preguntatsu" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
@@ -79,6 +81,11 @@
         <select name="" v-model="category_t_s_u_id" class="form-select my-2" id="">
             <option selected value="">Selecciona una categoria</option>
             <option v-for="category in categories" :value="category.id">@{{category.nametsu}}</option>
+        </select>
+        <span>Carreras:</span>
+        <select name="" v-model="carreras_id" class="form-select my-2" id="">
+            <option selected value="">Selecciona una carrera</option>
+            <option v-for="carrera in carreras" :value="carrera.id">@{{carrera.carrera}}</option>
         </select>
       </div>
       <div class="modal-footer">
