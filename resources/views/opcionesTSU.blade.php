@@ -40,7 +40,7 @@
                             <!-- <th>@{{option.id}}</th> -->
                             <th>@{{option.optiontsu}}</th>
                             <th>@{{option.puntostsu}}</th>
-                            <!-- <th>@{{option.PreguntasTSU.preguntatsu}}</th> -->
+                            <th>@{{option.preguntas_t_s_u.pregunta}}</th>
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 
                                     <i class="fa-duotone fa-pen-to-square fa-xl"></i>
