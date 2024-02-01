@@ -1,0 +1,84 @@
+var ruta = document.querySelector("[name=route]").value;
+ var apiequipo = ruta + '/apiequipos';  
+
+ new Vue({
+    http: {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+        }
+    },
+
+    el:'#equipo',
+    data:{
+        titulo:'EQUIPOS',
+        id:'',
+        nombre:'',
+        puntuacion:'',
+        equipos:[],
+    
+    },
+    created:function(){
+        this.obtenerequipo();
+    },
+    methods:{
+
+        obtenerequipo: function(){
+            this.$http.get(apiequipo).then(function(json){
+              this.equipos=json.data;
+              console.log(json.data)
+            }).catch(function(json){
+                console.log.apply(json);
+              });
+        },
+        mostrarModal:function(){
+          this.agregando=true;
+           this.nombre='';
+           $('#modalEquipos').modal('show');
+         },
+          
+         editandoequipo:function(id){
+          this.agregando=false;
+          this.id=id;
+          this.$http.get(apiequipo + '/' + id).then(function(json){
+            this.nombre=json.data.nombre;
+          });
+          $('#modalEquipos').modal('show');
+         },
+         actualizarequipo:function(){
+          var jsonequipo = {nombre:this.nombre};
+          this.$http.patch(apiequipo + '/' + this.id,jsonequipo).then(function(json){
+            this.obtenerequipo();
+          });
+          $('#modalEquipos').modal('hide');
+        },
+        eliminarequipo:function(id){
+          var confir = confirm('Desaea eliminar?');
+          
+          if (confir){
+            this.$http.delete(apiequipo + '/' + id).then(function(json){
+              this.obtenerequipo();
+            }).catch(function(json){
+              console.log(json);
+            });
+          }
+        },
+
+
+         guardarequipo:function(){
+          var equipos = {
+            nombre:this.nombre
+          };
+          this.$http.post(apiequipo,equipos).then(function(json){
+            this.obtenerequipo();
+            this.nombre='';
+          }).catch(function(json){
+            console.log(equipos);
+          });
+          $('#modalEquipos').modal('hide');
+         },
+        
+
+
+    },
+    
+ })
