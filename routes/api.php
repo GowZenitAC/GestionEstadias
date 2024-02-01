@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('preguntas', preguntasController::class);
 Route::apiResource('categorias', CategoryController::class);
 Route::apiResource('opciones', OpcionesController::class);
-
+Route::get('preguntasWithOptions', [preguntasController::class, 'getQuestionsWithOptions']);
 //rutas para TSU
 Route::apiResource('preguntasTSU', PreguntasTSUController::class);
 Route::apiResource('categoriasTSU', CategoryTSUController::class);

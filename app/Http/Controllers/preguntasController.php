@@ -94,4 +94,9 @@ class preguntasController extends Controller
         $preguntas = preguntas::find($id);
         $preguntas->delete();
     }
+
+    public function getQuestionsWithOptions(){
+        $preguntas = preguntas::with('Option')->get();
+        return $preguntas;
+    }
 }
