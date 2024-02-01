@@ -68,10 +68,8 @@
         </button>
       </div>
       <div class="modal-body">
-      Escriba el id:
-        <input type="number" class="form-control" placeholder="Escriba el id" v-model="id"><br>
-        escriba el equipo:
-        <input type="text" class="form-control" placeholder="escribe nombre" v-model="nombre"><br>
+        <span>Escriba el equipo:</span>
+        <input type="text" class="form-control my-2" placeholder="escribe nombre" v-model="nombre"><br>
         
       </div>
       <div class="modal-footer">

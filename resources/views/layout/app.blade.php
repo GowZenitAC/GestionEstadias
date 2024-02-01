@@ -163,6 +163,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->
+                            <!-- inicio boton de Equipos -->
+                            <li class="nav-item ">
+                                <a href="equipos" class="nav-link">
+                                    <span class="sidebar-icon">
+                                        <i class="fa-solid fa-users"></i>
+                                    </span>
+                                    <span class="sidebar-text">Equipos</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de Equipos -->
                         </ul>
                     </div>
                 </li>
