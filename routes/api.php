@@ -21,10 +21,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //rutas preparatorias
-Route::apiResource('preguntas', preguntasController::class);
+Route::get('preguntas', [preguntasController::class, 'index']);
+// Route::apiResource('preguntas', preguntasController::class);
 Route::apiResource('categorias', CategoryController::class);
 Route::apiResource('opciones', OpcionesController::class);
-
+Route::get('preguntasWithOptions', [preguntasController::class, 'getQuestionsWithOptions']);
 //rutas para TSU
 Route::apiResource('preguntasTSU', PreguntasTSUController::class);
 Route::apiResource('categoriasTSU', CategoryTSUController::class);
