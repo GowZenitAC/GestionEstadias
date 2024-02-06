@@ -22,7 +22,7 @@
             </div>
             <!-- inicio de tabla -->
             <div class="table-responsive">
-                <table class="table table-centered table-nowrap mb-0 rounded">
+                <table class="table table-centered table-nowrap mb-0 rounded" id="datatable">
                     <thead class="thead-light">
                         <tr>
                             <th class="border-0 rounded-start">Pregunta</th>
@@ -55,6 +55,9 @@
                 </table>
             </div>
             <!-- fin de tabla -->
+            <!-- prueba -->
+            
+            <!-- fin de prueba -->
         </div>
     </div>
     <!-- fin de card -->
@@ -108,9 +111,13 @@
 
 @endsection
 
+
+
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
 <script type="text/javascript" src="js/apis/apiPreguntasTSU.js"></script>
+
+
 
 @endpush
 

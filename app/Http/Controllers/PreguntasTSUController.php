@@ -15,6 +15,9 @@ class PreguntasTSUController extends Controller
         //
         $preguntas = PreguntasTSU::all();
         return $preguntas;
+        // paginacion
+        // $preguntas = PreguntasTSU::paginate(5);
+        // return $preguntas;
     }
 
     /**

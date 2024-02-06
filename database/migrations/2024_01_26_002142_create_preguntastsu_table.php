@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('pregunta');
             $table->string('imagen_preguntatsu')->nullable();
-            $table->foreignIdFor(CategoryTSU::class);
-            $table->foreignIdFor(Carreras::class);
+            $table->foreignId('category_t_s_u_id')->constrained('categoriestsu')->onDelete('cascade');
+            // $table->foreignIdFor(CategoryTSU::class);
+            $table->foreignId('carreras_id')->constrained('Carreras')->onDelete('cascade');
         });
     }
 

@@ -88,6 +88,7 @@ new Vue({
             });
             $("#modalPreguntas").modal("show");
         },
+
         actualizarpregunta: function () {
             var jsonpregunta = {
                 id: this.id,
@@ -96,36 +97,112 @@ new Vue({
                 carreras_id: this.carreras_id,
                 imagen_preguntatsu: this.imagen_preguntatsu,
             };
+        
             this.$http
                 .patch(apiPreguntasTSU + "/" + this.id, jsonpregunta)
                 .then(function (json) {
                     this.obtenerpregunta();
+        
+                    // Use SweetAlert2 for success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pregunta actualizada correctamente!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(function (error) {
+                    console.log(jsonpregunta);
+        
+                    // Use SweetAlert2 for error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al actualizar la pregunta',
+                        text: 'Por favor, inténtelo de nuevo.',
+                    });
                 });
+        
             $("#modalPreguntas").modal("hide");
         },
-        eliminarpregunta: function (id) {
-            var confir = confirm("Desaea eliminar?");
 
-            if (confir) {
-                this.$http
-                    .delete(apiPreguntasTSU + "/" + id)
-                    .then(function (json) {
-                        this.obtenerpregunta();
-                    })
-                    .catch(function (json) {
-                        console.log(json);
-                    });
-            }
+        eliminarpregunta: function (id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¡No podrás revertir esto!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminarlo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$http
+                        .delete(apiPreguntasTSU + "/" + id)
+                        .then(function (json) {
+                            this.obtenerpregunta();
+        
+                            // Use SweetAlert2 for success message
+                            Swal.fire(
+                                'Eliminado',
+                                'La pregunta ha sido eliminada correctamente.',
+                                'success'
+                            );
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+        
+                            // Use SweetAlert2 for error message
+                            Swal.fire(
+                                'Error',
+                                'Hubo un problema al intentar eliminar la pregunta.',
+                                'error'
+                            );
+                        });
+                }
+            });
         },
+        
+        
+        // actualizarpregunta: function () {
+        //     var jsonpregunta = {
+        //         id: this.id,
+        //         pregunta: this.pregunta,
+        //         category_t_s_u_id: this.category_t_s_u_id,
+        //         carreras_id: this.carreras_id,
+        //         imagen_preguntatsu: this.imagen_preguntatsu,
+        //     };
+        //     this.$http
+        //         .patch(apiPreguntasTSU + "/" + this.id, jsonpregunta)
+        //         .then(function (json) {
+        //             this.obtenerpregunta();
+        //         });
+        //     $("#modalPreguntas").modal("hide");
+        // },
+        // eliminarpregunta: function (id) {
+        //     var confir = confirm("Desaea eliminar?");
+
+        //     if (confir) {
+        //         this.$http
+        //             .delete(apiPreguntasTSU + "/" + id)
+        //             .then(function (json) {
+        //                 this.obtenerpregunta();
+        //             })
+        //             .catch(function (json) {
+        //                 console.log(json);
+        //             });
+        //     }
+        // },
         cargarImagen(e){
             this.imagen_preguntatsu = e.target.files[0];
         },
+
         guardarpregunta: function () {
             const preguntatsu = new FormData();
             preguntatsu.append("pregunta", this.pregunta);
             preguntatsu.append("category_t_s_u_id", this.category_t_s_u_id);
             preguntatsu.append("carreras_id", this.carreras_id);
             preguntatsu.append("imagen_preguntatsu", this.imagen_preguntatsu);
+        
             this.$http
                 .post(apiPreguntasTSU, preguntatsu,)
                 .then(function (json) {
@@ -134,12 +211,49 @@ new Vue({
                     this.category_t_s_u_id = "";
                     this.carreras_id = "";
                     this.imagen_preguntatsu = "";
+        
+                    // Use SweetAlert2 for success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pregunta guardada correctamente!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
-                .catch(function (json) {
+                .catch(function (error) {
                     console.log(preguntatsu);
+        
+                    // Use SweetAlert2 for error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al guardar la pregunta',
+                        text: 'Por favor, inténtelo de nuevo.',
+                    });
                 });
+        
             $("#modalPreguntas").modal("hide");
         },
+        
+        // guardarpregunta: function () {
+        //     const preguntatsu = new FormData();
+        //     preguntatsu.append("pregunta", this.pregunta);
+        //     preguntatsu.append("category_t_s_u_id", this.category_t_s_u_id);
+        //     preguntatsu.append("carreras_id", this.carreras_id);
+        //     preguntatsu.append("imagen_preguntatsu", this.imagen_preguntatsu);
+        //     this.$http
+        //         .post(apiPreguntasTSU, preguntatsu,)
+        //         .then(function (json) {
+        //             this.obtenerpregunta();
+        //             this.pregunta = "";
+        //             this.category_t_s_u_id = "";
+        //             this.carreras_id = "";
+        //             this.imagen_preguntatsu = "";
+        //         })
+        //         .catch(function (json) {
+        //             console.log(preguntatsu);
+        //         });
+        //     $("#modalPreguntas").modal("hide");
+        // },
     },
 
     computed: {

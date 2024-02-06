@@ -71,6 +71,8 @@ class CategoryTSUController extends Controller
     {
         //
         $category=CategoryTSU::find($id);
+        // ellimnar la linea sig si causa errores
+        $category->preguntasTSU()->delete();
         $category->delete();
     }
 }

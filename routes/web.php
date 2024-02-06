@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarrerasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -39,6 +40,7 @@ Route::resource('apiEquipos',equipoController::class);
 Route::resource('apiCategoryTSU',CategoryTSUController::class);
 Route::resource('apiOpcionesTSU',OpcionesTSUController::class);
 Route::resource('apiPreguntasTSU',preguntasTSUController::class);
+Route::resource('apiCarreras',CarrerasController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
@@ -50,6 +52,7 @@ Route::view('equipos', 'equipos')->middleware('auth');
 Route::view('categoriasTSU','categoriasTSU')->middleware('auth')->middleware('auth');
 Route::view('opcionesTSU','opcionesTSU')->middleware('auth')->middleware('auth');
 Route::view('preguntasTSU','preguntasTSU')->middleware('auth')->middleware('auth');
+Route::view('carreras','carreras')->middleware('auth')->middleware('auth');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])
