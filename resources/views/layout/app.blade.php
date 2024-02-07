@@ -173,6 +173,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de Equipos -->
+                            <!-- inicio boton de resultados -->
+                            <li class="nav-item ">
+                                <a href="resultados" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-duotone fa-square-poll-vertical"></i>
+                                    </span>
+                                    <span class="sidebar-text">Resultados</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de resultados -->
                         </ul>
                     </div>
                 </li>
@@ -236,6 +246,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de carreras -->
+                            <!-- inicio boton de resultados -->
+                            <li class="nav-item ">
+                                <a href="resultadostsu" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-duotone fa-square-poll-vertical"></i>
+                                    </span>
+                                    <span class="sidebar-text">Resultados TSU</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de resultados -->
                         </ul>
         </div>
       </li>
