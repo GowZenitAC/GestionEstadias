@@ -1,9 +1,9 @@
 @extends('layout.app')
-@section('titulo','Opciones')
+@section('titulo','Opciones TSU')
 @section('contenido')
 
 <!-- INICIA VUE -->
-<div id="opcion">
+<div id="opcionTSU">
     <!--inicio de card-->
 
     <div class="col-12 mb-4">
@@ -38,10 +38,9 @@
                         <!-- Item -->
                         <tr v-for="option in filtroOpciones">
                             <!-- <th>@{{option.id}}</th> -->
-                            <th>@{{option.option}}</th>
-                            <th>@{{option.points}}</th>
-                            <th>@{{option.preguntas.pregunta}}</th>
-
+                            <th>@{{option.optiontsu}}</th>
+                            <th>@{{option.puntostsu}}</th>
+                            <th>@{{option.preguntas_t_s_u.pregunta}}</th>
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 
                                     <i class="fa-duotone fa-pen-to-square fa-xl"></i>
@@ -75,25 +74,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span>
-                        Opción:
-                    </span>
-                    <input type="text" class="form-control my-2" placeholder="Opción" v-model="option">
+                    <span>Opción:</span>
+                    <input type="text" class="form-control my-2" placeholder="Opción" v-model="optiontsu">
                     <span>Puntos:</span>
-                    <input type="text" class="form-control my-2" placeholder="Puntos" v-model="points">
+                    <input type="text" class="form-control my-2" placeholder="Puntos" v-model="puntostsu">
                     <span>Pregunta:</span>
-                    <select class="form-select" v-model="preguntas_id" aria-label="Default select example">
-                        <!-- <option selected>Open this select menu</option> -->
-                        <option v-for="question in questions" :value="question.id">@{{question.pregunta}} - Categoría: @{{question.category.name}}</option>
+                    <select class="form-select" v-model="pregunta_tsu_id" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option v-for="question in tsu_questions" :value="question.id">@{{question.pregunta}}</option>
                     </select>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
 
-                    <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true && option.trim() !== ''">Guardar</button>
+                    <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true && optiontsu.trim() !== ''">Guardar</button>
 
-                    <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false && option.trim() !== ''">Guardar</button>
+                    <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false && optiontsu.trim() !== ''">Guardar</button>
                 </div>
             </div>
         </div>
@@ -110,7 +106,7 @@
 
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
-<script type="text/javascript" src="js/apis/apiOpciones.js"></script>
+<script type="text/javascript" src="js/apis/apiOpcionesTSU.js"></script>
 
 @endpush
 

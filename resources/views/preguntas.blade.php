@@ -27,6 +27,7 @@
                         <tr>
                             <th class="border-0 rounded-start">Pregunta</th>
                             <th class="border-0 rounded-start">Categoría</th>
+                            <th class="border-0 rounded-start">Imagen</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
@@ -36,11 +37,12 @@
                         <tr v-for="question in preguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category.name}}</th>
-                            <th><button class="btn" @click="editandopregunta(pregunta.id)">
+                            <th><img :src="question.imagen_pregunta" width="50"></th>
+                            <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarpregunta(pregunta.id)">
+                            <th><button class="btn" @click="eliminarpregunta(question.id)">
 									<!-- <i class="fas fa-trash-alt"></i> -->
 									<i class="fa-duotone fa-trash"></i>
 								</button></th>
@@ -69,9 +71,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <span>Escriba la pregunta:</span>
-        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta"><br>
-        <select name="" v-model="category_id" class="form-select" id="">
+        <span>Pregunta:</span>
+        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta">
+        <span>Imagen (Opcional):</span>
+        <input type="file" :v-model="imagen_pregunta" @change="cargarImagen" src="" class="form-control my-2" alt="">
+        <span>Categoría:</span>
+        <select name="" v-model="category_id" class="form-select my-2" id="">
             <option selected value="">Selecciona una categoria</option>
             <option v-for="category in categories" :value="category.id">@{{category.name}}</option>
         </select>

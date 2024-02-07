@@ -1,5 +1,5 @@
 var ruta = document.querySelector("[name=route]").value;
- var apiequipo = ruta + '/apiequipos';  
+ var apiequipo = ruta + '/apiEquipos';  
 
  new Vue({
     http: {
@@ -15,7 +15,7 @@ var ruta = document.querySelector("[name=route]").value;
         nombre:'',
         puntuacion:'',
         equipos:[],
-    
+        agregando:true
     },
     created:function(){
         this.obtenerequipo();
@@ -39,7 +39,7 @@ var ruta = document.querySelector("[name=route]").value;
          editandoequipo:function(id){
           this.agregando=false;
           this.id=id;
-          this.$http.get(apiequipo + '/' + id).then(function(json){
+          this.$http.get(apiequipo + '/' + id).then(function(json){ 
             this.nombre=json.data.nombre;
           });
           $('#modalEquipos').modal('show');

@@ -31,7 +31,6 @@ class equipoController extends Controller
     {
         
         $equipos=new Equipos();
-        $equipos->id=$request->get('id');
         $equipos->nombre=$request->get('nombre');
        
         $equipos->save();
@@ -43,7 +42,7 @@ class equipoController extends Controller
     public function show(string $id)
     {
         //
-        return Equipos::all();
+        return Equipos::find($id);
     }
 
     /**

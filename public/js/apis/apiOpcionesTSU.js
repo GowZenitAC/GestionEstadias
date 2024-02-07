@@ -1,78 +1,74 @@
 var ruta = document.querySelector("[name=route]").value;
-  var apiOpciones = ruta + '/apiOpciones';  
-  var apiPreguntas = ruta + '/apiPreguntas';
-
+  var apiOpcionesTSU = ruta + '/apiOpcionesTSU';  
+  var apiPreguntasTSU = ruta + '/apiPreguntasTSU';
 new Vue({
     http: {
         headers: {
           'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
         }
       },
-      el:"#opcion",
+      el:"#opcionTSU",
 
       data:{
          agregando:true,
-         titulo:'Opciones',
+         titulo:'Opciones TSU',
          id:'',
-         option:'',
-         points:0,
+         optiontsu:'',
+         puntostsu:'',
          buscar:'',
          opciones:[],
-         questions:[],
-         preguntas_id:""
+         tsu_questions:[],    
+         pregunta_tsu_id:""    
       },
 
       created:function(){
         this.obtenerOpciones();
-        this.getQuestions();
+        this.getTsuQuestions();
       },
 
       methods:{
 
         obtenerOpciones:function(){
-            this.$http.get(apiOpciones).then(function(json){
+            this.$http.get(apiOpcionesTSU).then(function(json){
                 this.opciones=json.data;
                 console.log(json.data)
             }).catch(function(json){
                 console.log(json);
             });
         },
-        
-        getQuestions(){
-            this.$http.get(apiPreguntas).then(function(json){
-                this.questions=json.data;
+
+        getTsuQuestions(){
+            this.$http.get(apiPreguntasTSU).then(function(json){
+                this.tsu_questions=json.data;
                 console.log(json.data)
             }).catch(function(json){
-                console.log(json.error);
+                console.log(json);
             })
         },
 
         mostrarModal:function(){
             this.agregando=true;
-            this.option='';
+            this.optiontsu='';
             $('#modalOpciones').modal('show');
         },
 
         editandoOpciones:function(id){
             this.agregando=false;
             this.id=id;
-            this.$http.get(apiOpciones + '/' + id).then(function(json){
-                this.option=json.data.option;
-                this.points=json.data.points;
-                this.preguntas_id=json.data.preguntas_id;
-                console.log(this.option);
+            this.$http.get(apiOpcionesTSU + '/' + id).then(function(json){
+                this.optiontsu=json.data.optiontsu;
+                console.log(this.optiontsu);
             });
             $('#modalOpciones').modal('show');
         },
 
         actualizarOpciones: function () {
-            const jsonOpciones = {
-                option: this.option,
-                points: this.points,
-                preguntas_id: this.preguntas_id
+            var jsonOpciones = {
+                optiontsu: this.optiontsu,
+                puntostsu: this.puntostsu
             };
         
-            this.$http.patch(apiOpciones + '/' + this.id, jsonOpciones)
+            this.$http.patch(apiOpcionesTSU + '/' + this.id, jsonOpciones)
                 .then(function (json) {
                     this.obtenerOpciones();
                     
@@ -106,13 +102,13 @@ new Vue({
                 text: 'Esta acción no se puede deshacer.',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
                 confirmButtonText: 'Sí, eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Si el usuario confirma, procede con la eliminación
-                    this.$http.delete(apiOpciones + '/' + id)
+                    this.$http.delete(apiOpcionesTSU + '/' + id)
                         .then(function(json) {
                             // Muestra un SweetAlert de éxito
                             Swal.fire({
@@ -141,12 +137,12 @@ new Vue({
 
         guardarOpciones: function() {
             const opciones = {
-                option: this.option,
-                points: this.points,
-                preguntas_id: this.preguntas_id
+                optiontsu: this.optiontsu,
+                puntostsu: this.puntostsu,
+                pregunta_tsu_id: this.pregunta_tsu_id
             };
         
-            this.$http.post(apiOpciones, opciones)
+            this.$http.post(apiOpcionesTSU, opciones)
                 .then(function(json) {
                     // Muestra un SweetAlert de éxito
                     Swal.fire({
@@ -160,9 +156,9 @@ new Vue({
                     this.obtenerOpciones();
                     
                     // Limpia los campos después de guardar
-                    this.option = '';
-                    this.points = '';
-                    this.preguntas_id = '';
+                    this.optiontsu = '';
+                    this.puntostsu = '';
+                    this.preguntas_tsu_id = '';
                 })
                 .catch(function(error) {
                     // Muestra un SweetAlert de error en caso de fallo
@@ -221,7 +217,7 @@ new Vue({
 
         filtroOpciones:function(){
             return this.opciones.filter((opciones)=>{
-                return opciones.option.toLowerCase().match(this.buscar.toLowerCase().trim())
+                return opciones.optiontsu.toLowerCase().match(this.buscar.toLowerCase().trim())
             });
         },  
   }

@@ -18,9 +18,14 @@ class preguntas extends Model
     protected $fillable=[
     	'id',
         'pregunta',
+        'imagen_pregunta',
         'category_id'
     ];
     public function Category(){
         return $this->belongsTo(Category::class);    
+    }
+
+    public function Option(){
+        return $this->hasMany(Opciones::class);
     }
 }

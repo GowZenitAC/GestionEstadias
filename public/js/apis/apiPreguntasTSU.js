@@ -1,6 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
-var apiPreguntas = ruta + "/apiPreguntas";
-let apiCategory = ruta + "/apiCategory";
+var apiPreguntasTSU = ruta + "/apiPreguntasTSU";
+let apiCategoryTSU = ruta + "/apiCategoryTSU";
 
 new Vue({
     http: {
@@ -10,17 +10,18 @@ new Vue({
                 .getAttribute("value"),
         },
     },
-    el: "#preguntas",
+    el: "#preguntastsu",
 
     data: {
-        titulo: "Preguntas",
+        titulo: "Preguntas TSU",
         id: "",
         pregunta: "",
         buscar: "",
         preguntas: [],
         categories: [],
-        category_id: "",
-        imagen_pregunta: "",
+        category_t_s_u_id: "",
+        imagen_preguntatsu: "",
+        agregando: true,
     },
 
     created: function () {
@@ -31,7 +32,7 @@ new Vue({
     methods: {
         obtenerpregunta: function () {
             this.$http
-                .get(apiPreguntas)
+                .get(apiPreguntasTSU)
                 .then(function (json) {
                     this.preguntas = json.data;
                     console.log(json.data);
@@ -42,7 +43,7 @@ new Vue({
         },
         getCategories() {
             this.$http
-                .get(apiCategory)
+                .get(apiCategoryTSU)
                 .then(function (json) {
                     this.categories = json.data;
                     console.log(json.data);
@@ -54,18 +55,19 @@ new Vue({
 
         mostrarModal: function () {
             this.agregando = true;
-            this.pregunta = "";
-            this.category_id = "";
-            this.imagen_pregunta = "";
+            this.preguntatsu = "";
+            this.category_t_s_u_id = "";
+            this.imagen_preguntatsu = "";
             $("#modalPreguntas").modal("show");
         },
 
         editandopregunta: function (id) {
             this.agregando = false;
             this.id = id;
-            this.$http.get(apiPreguntas + "/" + id).then(function (json) {
+            this.$http.get(apiPreguntasTSU + "/" + id).then(function (json) {
                 this.pregunta = json.data.pregunta;
-                this.category_id = json.data.category_id;
+                this.category_t_s_u_id = json.data.category_t_s_u_id;
+                this.imagen_preguntatsu= json.data.imagen_preguntatsu;
             });
             $("#modalPreguntas").modal("show");
         },
@@ -73,10 +75,11 @@ new Vue({
             var jsonpregunta = {
                 id: this.id,
                 pregunta: this.pregunta,
-                category_id: this.category_id,
+                category_t_s_u_id: this.category_t_s_u_id,
+                imagen_preguntatsu: this.imagen_preguntatsu,
             };
             this.$http
-                .patch(apiPreguntas + "/" + this.id, jsonpregunta)
+                .patch(apiPreguntasTSU + "/" + this.id, jsonpregunta)
                 .then(function (json) {
                     this.obtenerpregunta();
                 });
@@ -87,7 +90,7 @@ new Vue({
 
             if (confir) {
                 this.$http
-                    .delete(apiPreguntas + "/" + id)
+                    .delete(apiPreguntasTSU + "/" + id)
                     .then(function (json) {
                         this.obtenerpregunta();
                     })
@@ -97,33 +100,29 @@ new Vue({
             }
         },
         cargarImagen(e){
-            this.imagen_pregunta = e.target.files[0];
+            this.imagen_preguntatsu = e.target.files[0];
         },
         guardarpregunta: function () {
-            const pregunta = new FormData();
-            pregunta.append("pregunta", this.pregunta);
-            pregunta.append("category_id", this.category_id);
-            pregunta.append("imagen_pregunta", this.imagen_pregunta);
+            const preguntatsu = new FormData();
+            preguntatsu.append("pregunta", this.pregunta);
+            preguntatsu.append("category_t_s_u_id", this.category_t_s_u_id);
+            preguntatsu.append("imagen_preguntatsu", this.imagen_preguntatsu);
             this.$http
-                .post(apiPreguntas, pregunta,)
+                .post(apiPreguntasTSU, preguntatsu,)
                 .then(function (json) {
                     this.obtenerpregunta();
                     this.pregunta = "";
-                    this.category_id = "";
-                    this.imagen_pregunta = "";
+                    this.category_t_s_u_id = "";
+                    this.imagen_preguntatsu = "";
                 })
                 .catch(function (json) {
-                    console.log(pregunta);
+                    console.log(preguntatsu);
                 });
             $("#modalPreguntas").modal("hide");
         },
     },
 
     computed: {
-        // filtropregunta:function(){
-        //   return this.pregunta.filter((pregunta)=>{
-        //     return pregunta.name.toLowerCase().match(this.buscar.toLowerCase().trim())
-        //   });
-        // },
+      
     },
 });

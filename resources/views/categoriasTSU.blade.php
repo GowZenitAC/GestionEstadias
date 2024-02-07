@@ -1,7 +1,9 @@
 @extends('layout.app')
-@section('titulo','equipo')
+@section('titulo','Categorías TSU')
 @section('contenido')
-<div id="equipo">
+
+<!-- INICIA VUE -->
+<div id="categoriasTSU">
     <!--inicio de card-->
     <div class="col-12 mb-4">
         <div class="card border-0 shadow">
@@ -12,7 +14,7 @@
                     </div>
                     <div class="col text-end">
                         <!-- Button Modal -->
-<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar equipo</button>
+<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar categoría</button>
 <!-- Modal Content -->
                        
                     </div>
@@ -23,25 +25,22 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                       
-                            <th class="border-0 rounded-start">equipo</th>
+                            <th class="border-0 rounded-start">Nombre</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        <tr v-for="equipo in equipos">
-                       
-                            <th>@{{equipo.nombre}}</th>
-                            
-                            <th><button class="btn" @click="editandoequipo(equipo.id)">
+                        <tr v-for="category in filtroCategory">
+                            <th>@{{category.nametsu}}</th>
+                            <th><button class="btn" @click="editandoCategory(category.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
-									<i class="fa-duotone fa-pen-to-square"></i>
+									<i class="fa-duotone fa-pen-to-square fa-xl"></i>
 								</button></th>
-                            <th><button class="btn" @click="eliminarequipo(equipo.id)">
+                            <th><button class="btn" @click="eliminarCategory(category.id)">
 									<!-- <i class="fas fa-trash-alt"></i> -->
-									<i class="fa-duotone fa-trash"></i>
+									<i class="fa-duotone fa-trash fa-xl"></i>
 								</button></th>
                         </tr>
                         
@@ -57,27 +56,27 @@
     <!-- Button Modal -->
 <!-- Modal Content -->
 <!-- INICIA VENTANA MODAL -->
-<div class="modal fade" id="modalEquipos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="modalCategoriasTSU" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar equipo</h5>
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar equipo</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar Categoría</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar categoría</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           
         </button>
       </div>
       <div class="modal-body">
-        <span>Escriba el equipo:</span>
-        <input type="text" class="form-control my-2" placeholder="escribe nombre" v-model="nombre"><br>
-        
+     
+        Nombre de la categoría:
+        <input type="text" class="form-control" placeholder="Nombre de la categoria" v-model="nametsu"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> -->
-        <button type="button" class="btn btn-primary" @click="guardarequipo()" v-if="agregando==true">Guardar</button>
+       
+        <button type="button" class="btn btn-primary" @click="guardarCategory()" v-if="agregando==true && nametsu.trim() !== ''">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click=" actualizarequipo()" v-if="agregando==false">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarCategory()" v-if="agregando==false && nametsu.trim() !== ''">Guardar</button>
       </div>
     </div>
   </div>
@@ -87,12 +86,14 @@
 <!-- End of Modal Content -->
     <!-- modal final -->
 </div>
+<!-- TERMINA VUE -->
+
 
 @endsection
 
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
-<script type="text/javascript" src="js/apis/apiEquipo.js"></script>
+<script type="text/javascript" src="js/apis/apiCategoryTSU.js"></script>
 
 @endpush
 

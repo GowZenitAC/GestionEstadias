@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Opciones;
+use App\Models\CategoryTSU;
 
-class OpcionesController extends Controller
+class CategoryTSUController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class OpcionesController extends Controller
     public function index()
     {
         //
-        return Opciones::all();
+        return CategoryTSU::all();
     }
 
     /**
@@ -30,11 +30,10 @@ class OpcionesController extends Controller
     public function store(Request $request)
     {
         //
-        $opciones=new Opciones();
-        $opciones->option=$request->get('option');
-        $opciones->points=$request->get('points');
-        $opciones->preguntas_id=$request->get('preguntas_id');
-        $opciones->save();
+        $category=new CategoryTSU();
+        $category->id=$request->get('id');
+        $category->nametsu=$request->get('nametsu');
+        $category->save();
     }
 
     /**
@@ -43,7 +42,7 @@ class OpcionesController extends Controller
     public function show(string $id)
     {
         //
-        return Opciones::find($id);
+        return CategoryTSU::find($id);
     }
 
     /**
@@ -60,11 +59,9 @@ class OpcionesController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $opciones=Opciones::find($id);
-        $opciones->option=$request->get('option');
-        $opciones->points=$request->get('points');
-        $opciones->preguntas_id=$request->get('preguntas_id');
-        $opciones->update();
+        $category=CategoryTSU::find($id);
+        $category->nametsu=$request->get('nametsu');
+        $category->update();
     }
 
     /**
@@ -73,7 +70,7 @@ class OpcionesController extends Controller
     public function destroy(string $id)
     {
         //
-        $opciones=Opciones::find($id);
-        $opciones->delete();
+        $category=CategoryTSU::find($id);
+        $category->delete();
     }
 }

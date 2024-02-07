@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Opciones;
+use App\Models\OpcionesTSU;
 
-class OpcionesController extends Controller
+class OpcionesTSUController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class OpcionesController extends Controller
     public function index()
     {
         //
-        return Opciones::all();
+        return OpcionesTSU::all();
     }
 
     /**
@@ -30,10 +30,11 @@ class OpcionesController extends Controller
     public function store(Request $request)
     {
         //
-        $opciones=new Opciones();
-        $opciones->option=$request->get('option');
-        $opciones->points=$request->get('points');
-        $opciones->preguntas_id=$request->get('preguntas_id');
+        $opciones=new OpcionesTSU();
+        $opciones->id=$request->get('id');
+        $opciones->optiontsu=$request->get('optiontsu');
+        $opciones->puntostsu=$request->get('puntostsu');
+        $opciones->pregunta_tsu_id=$request->get('pregunta_tsu_id');
         $opciones->save();
     }
 
@@ -43,7 +44,7 @@ class OpcionesController extends Controller
     public function show(string $id)
     {
         //
-        return Opciones::find($id);
+        return OpcionesTSU::find($id);
     }
 
     /**
@@ -60,10 +61,10 @@ class OpcionesController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $opciones=Opciones::find($id);
-        $opciones->option=$request->get('option');
-        $opciones->points=$request->get('points');
-        $opciones->preguntas_id=$request->get('preguntas_id');
+        $opciones=OpcionesTSU::find($id);
+        $opciones->optiontsu=$request->get('optiontsu');
+        $opciones->puntostsu=$request->get('puntostsu');
+        $opciones->pregunta_tsu_id=$request->get('pregunta_tsu_id');
         $opciones->update();
     }
 
@@ -73,7 +74,7 @@ class OpcionesController extends Controller
     public function destroy(string $id)
     {
         //
-        $opciones=Opciones::find($id);
+        $opciones=OpcionesTSU::find($id);
         $opciones->delete();
     }
 }

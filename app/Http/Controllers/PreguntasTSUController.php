@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\preguntas;
+use App\Models\PreguntasTSU;
 
-class preguntasController extends Controller
+class PreguntasTSUController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class preguntasController extends Controller
     public function index()
     {
         //
-        // Mostrar una lista de registros
-        $preguntas = preguntas::all();
+        $preguntas = PreguntasTSU::all();
         return $preguntas;
     }
 
@@ -24,9 +23,6 @@ class preguntasController extends Controller
     public function create()
     {
         //
-        // $category=new Category();
-        // $category->id=$request->get('id');
-        // $category->name=$request->get('name');
     }
 
     /**
@@ -34,17 +30,16 @@ class preguntasController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $preguntas = new preguntas();
+        //
+        $preguntas = new PreguntasTSU();
         $preguntas->pregunta = $request->get('pregunta');
-        $preguntas->category_id = $request->get('category_id');
-        if ($request->hasFile('imagen_pregunta')) {
-            $imagen = $request->file('imagen_pregunta');
+        $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
+        if($request->hasFile('imagen_preguntatsu')){
+            $imagen = $request->file('imagen_preguntatsu');
             $destino = 'images/';
             $nombre = $imagen->getClientOriginalName();
-            $guardado = $request->file('imagen_pregunta')->move($destino, $nombre);
-            $preguntas->imagen_pregunta = $destino . $nombre;
+            $guardado = $request->file('imagen_preguntatsu')->move($destino, $nombre);
+            $preguntas->imagen_preguntatsu = $destino.$nombre;
         }
         $preguntas->save();
     }
@@ -55,7 +50,7 @@ class preguntasController extends Controller
     public function show(string $id)
     {
         //
-        return preguntas::find($id);
+        return PreguntasTSU::find($id);
     }
 
     /**
@@ -72,15 +67,15 @@ class preguntasController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $preguntas = preguntas::find($id);
+        $preguntas = PreguntasTSU::find($id);
         $preguntas->pregunta = $request->get('pregunta');
-        $preguntas->category_id = $request->get('category_id');
-        if ($request->hasFile('imagen_pregunta')) {
-            $imagen = $request->file('imagen_pregunta');
+        $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
+        if($request->hasFile('imagen_preguntatsu')){
+            $imagen = $request->file('imagen_preguntatsu');
             $destino = 'images/';
             $nombre = $imagen->getClientOriginalName();
-            $guardado = $request->file('imagen_pregunta')->move($destino, $nombre);
-            $preguntas->imagen_pregunta = $destino . $nombre;
+            $guardado = $request->file('imagen_preguntatsu')->move($destino, $nombre);
+            $preguntas->imagen_preguntatsu = $destino.$nombre;
         }
         $preguntas->update();
     }
@@ -91,12 +86,7 @@ class preguntasController extends Controller
     public function destroy(string $id)
     {
         //
-        $preguntas = preguntas::find($id);
+        $preguntas = PreguntasTSU::find($id);
         $preguntas->delete();
-    }
-
-    public function getQuestionsWithOptions(){
-        $preguntas = preguntas::with('Option')->get();
-        return $preguntas;
     }
 }
