@@ -10,6 +10,7 @@ class Resultados extends Model
     protected $table='resultados';
     protected $primaryKey='id';
     public $incrementing=true;
+    public $with=['equipo'];
 
     public $timestamps=false;
 
@@ -19,6 +20,11 @@ class Resultados extends Model
         'puntos',
         'tiempo'
     ];
+
+    public function equipo(){
+
+        return $this->belongsTo(equipos::class, 'id_equipo');
+    }
     
 
 }
