@@ -35,8 +35,8 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="question in preguntas">
-                            <th class="ajuste">@{{question.pregunta}}</th>
-                            <th style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;">@{{question.category.name}}</th>
+                            <th style="max-width: 20em; white-space: wrap;">@{{question.pregunta}}</th>
+                            <th >@{{question.category.name}}</th>
                             <th><img :src="question.imagen_pregunta" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
@@ -72,7 +72,7 @@
       </div>
       <div class="modal-body">
         <span>Pregunta:</span>
-        <input style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;"type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta">
+        <input type="text" class="form-control my-2" placeholder="escribe pregunta" v-model="pregunta">
         <span>Imagen (Opcional):</span>
         <input type="file" :v-model="imagen_pregunta" @change="cargarImagen" src="" class="form-control my-2" alt="">
         <span>Categoría:</span>
