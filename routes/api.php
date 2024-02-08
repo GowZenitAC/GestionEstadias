@@ -8,6 +8,7 @@ use App\Http\Controllers\preguntasController;
 use App\Http\Controllers\PreguntasTSUController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\equipoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('preguntas', [preguntasController::class, 'index']);
 // Route::apiResource('preguntas', preguntasController::class);
 Route::apiResource('categorias', CategoryController::class);
 Route::apiResource('opciones', OpcionesController::class);
+Route::apiresource('apiEquipos',equipoController::class);
+Route::get('apiequipos', [equipoController::class, 'index']);
 Route::get('preguntasWithOptions', [preguntasController::class, 'getQuestionsWithOptions']);
 //rutas para TSU
 Route::apiResource('preguntasTSU', PreguntasTSUController::class);
