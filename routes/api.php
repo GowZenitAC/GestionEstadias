@@ -9,7 +9,6 @@ use App\Http\Controllers\preguntasController;
 use App\Http\Controllers\PreguntasTSUController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\equipoController;
 
 /*
 |--------------------------------------------------------------------------
