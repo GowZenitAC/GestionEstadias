@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTSUController;
+use App\Http\Controllers\equipoController;
 use App\Http\Controllers\OpcionesController;
 use App\Http\Controllers\OpcionesTSUController;
 use App\Http\Controllers\preguntasController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 //rutas preparatorias
 Route::get('preguntas', [preguntasController::class, 'index']);
-// Route::apiResource('preguntas', preguntasController::class);
+Route::get('apiequipos', [equipoController::class, 'index']);
 Route::apiResource('categorias', CategoryController::class);
 Route::apiResource('opciones', OpcionesController::class);
 Route::get('preguntasWithOptions', [preguntasController::class, 'getQuestionsWithOptions']);
