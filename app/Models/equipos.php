@@ -19,4 +19,8 @@ class Equipos extends Model
       
     ];
 
+    public function resultados(){
+        return $this->hasOne(Resultados::class);
+    }
+
 }

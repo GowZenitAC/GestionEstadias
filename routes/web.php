@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarrerasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\preguntasController;
 use App\Http\Controllers\OpcionesTSUController;
 use App\Http\Controllers\preguntasTSUController;
 use App\Http\Controllers\equipoController;
+use App\Http\Controllers\ResultadosController;
 
 
 /*
@@ -34,11 +36,13 @@ Route::resource('apiCategory',CategoryController::class);
 Route::Resource('apiPreguntas',preguntasController::class);
 Route::resource('apiOpciones',OpcionesController::class);
 Route::resource('apiEquipos',equipoController::class);
+Route::resource('apiResultados',ResultadosController::class);
 
 //apis tsu
 Route::resource('apiCategoryTSU',CategoryTSUController::class);
 Route::resource('apiOpcionesTSU',OpcionesTSUController::class);
 Route::resource('apiPreguntasTSU',preguntasTSUController::class);
+Route::resource('apiCarreras',CarrerasController::class);
 
 //vistas de las ventanas
 Route::view('inicio','inicio')->middleware('auth');
@@ -46,10 +50,12 @@ Route::view('categorias','categorias')->middleware('auth');
 Route::view('preguntas','preguntas')->middleware('auth');
 Route::view('opciones','opciones')->middleware('auth');
 Route::view('equipos', 'equipos')->middleware('auth');
+Route::view('resultados', 'resultados')->middleware('auth');
 //vistas tsu
 Route::view('categoriasTSU','categoriasTSU')->middleware('auth')->middleware('auth');
 Route::view('opcionesTSU','opcionesTSU')->middleware('auth')->middleware('auth');
 Route::view('preguntasTSU','preguntasTSU')->middleware('auth')->middleware('auth');
+Route::view('carreras','carreras')->middleware('auth')->middleware('auth');
 
 //login
 Route::get('/login',[SessionsController::class, 'create'])

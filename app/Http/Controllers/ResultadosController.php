@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CategoryTSU;
+use Illuminate\Support\Facades\DB;
+use App\Models\Resultados;
 
-class CategoryTSUController extends Controller
+class ResultadosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class CategoryTSUController extends Controller
     public function index()
     {
         //
-        return CategoryTSU::all();
+        return Resultados::all();
     }
 
     /**
@@ -30,10 +31,12 @@ class CategoryTSUController extends Controller
     public function store(Request $request)
     {
         //
-        $category=new CategoryTSU();
-        $category->id=$request->get('id');
-        $category->nametsu=$request->get('nametsu');
-        $category->save();
+        $resultados=new Resultados();
+        $resultados->id=$request->get('id');
+        $resultados->id_equipo=$request->get('id_equipo');
+        $resultados->puntos=$request->get('puntos');
+        $resultados->tiempo=$request->get('tiempo');
+        $resultados->save();
     }
 
     /**
@@ -42,7 +45,7 @@ class CategoryTSUController extends Controller
     public function show(string $id)
     {
         //
-        return CategoryTSU::find($id);
+        return Resultados::find($id);
     }
 
     /**
@@ -59,9 +62,10 @@ class CategoryTSUController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $category=CategoryTSU::find($id);
-        $category->nametsu=$request->get('nametsu');
-        $category->update();
+        $resultados=Resultados::find($id);
+        $resultados->id_equipo=$request->get('id_equipo');
+        $resultados->puntos=$request->get('puntos');
+        $resultados->update();
     }
 
     /**
@@ -70,9 +74,8 @@ class CategoryTSUController extends Controller
     public function destroy(string $id)
     {
         //
-        $category=CategoryTSU::find($id);
-        // ellimnar la linea sig si causa errores
-        $category->preguntasTSU()->delete();
-        $category->delete();
+        $resultados=Resultados::find($id);
+        $resultados->delete();
     }
+    
 }

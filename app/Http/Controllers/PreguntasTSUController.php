@@ -15,6 +15,9 @@ class PreguntasTSUController extends Controller
         //
         $preguntas = PreguntasTSU::all();
         return $preguntas;
+        // paginacion
+        // $preguntas = PreguntasTSU::paginate(5);
+        // return $preguntas;
     }
 
     /**
@@ -34,6 +37,7 @@ class PreguntasTSUController extends Controller
         $preguntas = new PreguntasTSU();
         $preguntas->pregunta = $request->get('pregunta');
         $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
+        $preguntas->carreras_id = $request->get('carreras_id');
         if($request->hasFile('imagen_preguntatsu')){
             $imagen = $request->file('imagen_preguntatsu');
             $destino = 'images/';
@@ -70,6 +74,7 @@ class PreguntasTSUController extends Controller
         $preguntas = PreguntasTSU::find($id);
         $preguntas->pregunta = $request->get('pregunta');
         $preguntas->category_t_s_u_id = $request->get('category_t_s_u_id');
+        $preguntas->carreras_id = $request->get('carreras_id');
         if($request->hasFile('imagen_preguntatsu')){
             $imagen = $request->file('imagen_preguntatsu');
             $destino = 'images/';

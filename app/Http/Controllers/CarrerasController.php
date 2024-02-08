@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CategoryTSU;
+use App\Models\Carreras;
 
-class CategoryTSUController extends Controller
+class CarrerasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class CategoryTSUController extends Controller
     public function index()
     {
         //
-        return CategoryTSU::all();
+        return Carreras::all();
     }
 
     /**
@@ -30,10 +30,10 @@ class CategoryTSUController extends Controller
     public function store(Request $request)
     {
         //
-        $category=new CategoryTSU();
-        $category->id=$request->get('id');
-        $category->nametsu=$request->get('nametsu');
-        $category->save();
+        $carrera=new Carreras();
+        $carrera->id=$request->get('id');
+        $carrera->carrera=$request->get('carrera');
+        $carrera->save();
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoryTSUController extends Controller
     public function show(string $id)
     {
         //
-        return CategoryTSU::find($id);
+        return Carreras::find($id);
     }
 
     /**
@@ -59,9 +59,9 @@ class CategoryTSUController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $category=CategoryTSU::find($id);
-        $category->nametsu=$request->get('nametsu');
-        $category->update();
+        $carrera=Carreras::find($id);
+        $carrera->carrera=$request->get('carrera');
+        $carrera->update();
     }
 
     /**
@@ -70,9 +70,7 @@ class CategoryTSUController extends Controller
     public function destroy(string $id)
     {
         //
-        $category=CategoryTSU::find($id);
-        // ellimnar la linea sig si causa errores
-        $category->preguntasTSU()->delete();
-        $category->delete();
+        $carrera=Carreras::find($id);
+        $carrera->delete();
     }
 }
