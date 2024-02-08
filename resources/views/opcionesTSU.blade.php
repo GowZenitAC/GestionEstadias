@@ -87,9 +87,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
 
-                    <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true && optiontsu.trim() !== ''">Guardar</button>
+                    <button type="button" class="btn btn-primary" @click="guardarOpciones()" v-if="agregando==true">Guardar</button>
 
-                    <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false && optiontsu.trim() !== ''">Guardar</button>
+                    <button type="button" class="btn btn-primary" @click="actualizarOpciones()" v-if="agregando==false">Guardar</button>
                 </div>
             </div>
         </div>

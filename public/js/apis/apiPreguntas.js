@@ -21,6 +21,7 @@ new Vue({
         categories: [],
         category_id: "",
         imagen_pregunta: "",
+        agregando: true,
     },
 
     created: function () {
@@ -75,47 +76,155 @@ new Vue({
                 pregunta: this.pregunta,
                 category_id: this.category_id,
             };
+        
             this.$http
                 .patch(apiPreguntas + "/" + this.id, jsonpregunta)
-                .then(function (json) {
+                .then((json) => {
+                    // Manejar éxito de la petición
                     this.obtenerpregunta();
-                });
-            $("#modalPreguntas").modal("hide");
-        },
-        eliminarpregunta: function (id) {
-            var confir = confirm("Desaea eliminar?");
-
-            if (confir) {
-                this.$http
-                    .delete(apiPreguntas + "/" + id)
-                    .then(function (json) {
-                        this.obtenerpregunta();
-                    })
-                    .catch(function (json) {
-                        console.log(json);
+                    // Mostrar SweetAlert de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Pregunta actualizada!',
+                        text: 'La pregunta se ha actualizado correctamente.'
                     });
-            }
+                })
+                .catch((error) => {
+                    // Manejar error de la petición
+                    console.error(error);
+                    // Mostrar SweetAlert de error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error al actualizar la pregunta. Por favor, inténtalo de nuevo.'
+                    });
+                })
+                .finally(() => {
+                    // Siempre ocultar el modal después de la petición (éxito o error)
+                    $("#modalPreguntas").modal("hide");
+                });
+        },
+        // actualizarpregunta: function () {
+        //     var jsonpregunta = {
+        //         id: this.id,
+        //         pregunta: this.pregunta,
+        //         category_id: this.category_id,
+        //     };
+        //     this.$http
+        //         .patch(apiPreguntas + "/" + this.id, jsonpregunta)
+        //         .then(function (json) {
+        //             this.obtenerpregunta();
+        //         });
+        //     $("#modalPreguntas").modal("hide");
+        // },
+        // eliminarpregunta: function (id) {
+        //     var confir = confirm("Desaea eliminar?");
+
+        //     if (confir) {
+        //         this.$http
+        //             .delete(apiPreguntas + "/" + id)
+        //             .then(function (json) {
+        //                 this.obtenerpregunta();
+        //             })
+        //             .catch(function (json) {
+        //                 console.log(json);
+        //             });
+        //     }
+        // },
+        eliminarpregunta: function (id) {
+            // Utilizamos SweetAlert en lugar de confirm
+            Swal.fire({
+                title: '¿Desea eliminar la pregunta?',
+                text: 'Esta acción no se puede deshacer',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$http
+                        .delete(apiPreguntas + "/" + id)
+                        .then((json) => {
+                            // Manejar éxito de la petición
+                            this.obtenerpregunta();
+                            // Mostrar SweetAlert de éxito
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Pregunta eliminada!',
+                                text: 'La pregunta se ha eliminado correctamente.'
+                            });
+                        })
+                        .catch((error) => {
+                            // Manejar error de la petición
+                            console.error(error);
+                            // Mostrar SweetAlert de error
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Hubo un error al eliminar la pregunta. Por favor, inténtalo de nuevo.'
+                            });
+                        });
+                }
+            });
         },
         cargarImagen(e){
             this.imagen_pregunta = e.target.files[0];
         },
+        // guardarpregunta: function () {
+        //     const pregunta = new FormData();
+        //     pregunta.append("pregunta", this.pregunta);
+        //     pregunta.append("category_id", this.category_id);
+        //     pregunta.append("imagen_pregunta", this.imagen_pregunta);
+        //     this.$http
+        //         .post(apiPreguntas, pregunta,)
+        //         .then(function (json) {
+        //             this.obtenerpregunta();
+        //             this.pregunta = "";
+        //             this.category_id = "";
+        //             this.imagen_pregunta = "";
+        //         })
+        //         .catch(function (json) {
+        //             console.log(pregunta);
+        //         });
+        //     $("#modalPreguntas").modal("hide");
+        // },
         guardarpregunta: function () {
             const pregunta = new FormData();
             pregunta.append("pregunta", this.pregunta);
             pregunta.append("category_id", this.category_id);
             pregunta.append("imagen_pregunta", this.imagen_pregunta);
+        
             this.$http
-                .post(apiPreguntas, pregunta,)
+                .post(apiPreguntas, pregunta)
                 .then(function (json) {
+                    // Manejar el éxito de la petición
                     this.obtenerpregunta();
                     this.pregunta = "";
                     this.category_id = "";
                     this.imagen_pregunta = "";
+                    // Mostrar SweetAlert de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Pregunta guardada!',
+                        text: 'La pregunta se ha guardado exitosamente.',
+                    });
                 })
-                .catch(function (json) {
-                    console.log(pregunta);
+                .catch(function (error) {
+                    // Manejar el error de la petición
+                    console.error(error);
+                    // Mostrar SweetAlert de error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error al guardar la pregunta. Por favor, inténtalo de nuevo.',
+                    });
+                })
+                .finally(function () {
+                    // Siempre ocultar el modal después de la petición (éxito o error)
+                    $("#modalPreguntas").modal("hide");
                 });
-            $("#modalPreguntas").modal("hide");
         },
     },
 

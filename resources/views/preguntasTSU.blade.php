@@ -22,11 +22,12 @@
             </div>
             <!-- inicio de tabla -->
             <div class="table-responsive">
-                <table class="table table-centered table-nowrap mb-0 rounded">
+                <table class="table table-centered table-nowrap mb-0 rounded" id="datatable">
                     <thead class="thead-light">
                         <tr>
                             <th class="border-0 rounded-start">Pregunta</th>
                             <th class="border-0 rounded-start">Categoría</th>
+                            <th class="border-0 rounded-start">Carreras</th>
                             <th class="border-0 rounded-start">Imagen</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
@@ -37,6 +38,7 @@
                         <tr v-for="question in preguntas">
                             <th>@{{question.pregunta}}</th>
                             <th>@{{question.category_t_s_u.nametsu}}</th>
+                            <th>@{{question.carreras.carrera}}</th>
                             <th><img :src="question.imagen_preguntatsu" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
@@ -53,6 +55,9 @@
                 </table>
             </div>
             <!-- fin de tabla -->
+            <!-- prueba -->
+            
+            <!-- fin de prueba -->
         </div>
     </div>
     <!-- fin de card -->
@@ -80,6 +85,11 @@
             <option selected value="">Selecciona una categoria</option>
             <option v-for="category in categories" :value="category.id">@{{category.nametsu}}</option>
         </select>
+        <span>Carreras:</span>
+        <select name="" v-model="carreras_id" class="form-select my-2" id="">
+            <option selected value="">Selecciona una carrera</option>
+            <option v-for="carrera in carreras" :value="carrera.id">@{{carrera.carrera}}</option>
+        </select>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
@@ -101,9 +111,13 @@
 
 @endsection
 
+
+
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
 <script type="text/javascript" src="js/apis/apiPreguntasTSU.js"></script>
+
+
 
 @endpush
 
