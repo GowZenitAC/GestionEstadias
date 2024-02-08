@@ -35,8 +35,8 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="question in preguntas">
-                            <th>@{{question.pregunta}}</th>
-                            <th>@{{question.category.name}}</th>
+                            <th class="ajuste">@{{question.pregunta}}</th>
+                            <th style="max-width: 20px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;">@{{question.category.name}}</th>
                             <th><img :src="question.imagen_pregunta" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
