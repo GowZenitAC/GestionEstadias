@@ -38,9 +38,9 @@
                         <!-- Item -->
                         <tr v-for="option in filtroOpciones">
                             <!-- <th>@{{option.id}}</th> -->
-                            <th>@{{option.option}}</th>
+                            <th><span v-html="renderOption(option.option)"></span></th>
                             <th>@{{option.points}}</th>
-                            <th>@{{option.preguntas.pregunta}}</th>
+                            <th><span v-html="renderQuestion(option.preguntas.pregunta)"></span></th>
 
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 

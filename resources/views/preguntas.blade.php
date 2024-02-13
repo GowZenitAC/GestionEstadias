@@ -35,7 +35,7 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="question in preguntas">
-                            <th style="max-width: 20em; white-space: wrap;">@{{question.pregunta}}</th>
+                            <th style="max-width: 20em; white-space: wrap;"><span v-html="renderQuestion(question.pregunta)"></span></th>
                             <th >@{{question.category.name}}</th>
                             <th><img :src="question.imagen_pregunta" width="50"></th>
                             <th><button class="btn" @click="editandopregunta(question.id)">
