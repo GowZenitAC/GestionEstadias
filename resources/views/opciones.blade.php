@@ -40,7 +40,7 @@
                             <!-- <th>@{{option.id}}</th> -->
                             <th>@{{option.option}}</th>
                             <th>@{{option.points}}</th>
-                            <th>@{{option.preguntas.pregunta}}</th>
+                            <th  style="max-width: 20em; white-space: wrap;">@{{option.preguntas.pregunta}}</th>
 
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 
@@ -83,7 +83,7 @@
                     <span>Puntos:</span>
                     <input type="text" class="form-control my-2" placeholder="Puntos" v-model="points">
                     <span>Pregunta:</span>
-                    <select class="form-select" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;" v-model="preguntas_id" aria-label="Default select example">
+                    <select  class="form-select" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;"  v-model="preguntas_id" aria-label="Default select example">
                         <!-- <option selected>Open this select menu</option> -->
                         <option v-for="question in questions" :value="question.id">@{{question.pregunta}} - Categoría: @{{question.category.name}}</option>
                     </select>
