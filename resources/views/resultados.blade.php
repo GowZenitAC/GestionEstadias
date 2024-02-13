@@ -7,35 +7,27 @@
     <!--inicio de card-->
     <div class="col-12 mb-4">
         <div class="card border-0 shadow">
-            <div class="card-header">
+        <div class="card-header">
+                <h6>Resultados</h6>
                 <div class="row align-items-center">
                     <div class="col">
-                        <h2 class="fs-5 fw-bold mb-0">@{{titulo}}</h2>
+                        <p>Cambiar por tabla o grafica:</p>
                     </div>
                     <div class="col text-end">
-                        <!-- Button Modal -->
-<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar resultados</button>
-<!-- Modal Content -->
-                       
+                        <!-- select de tablas y graficas -->
+                        <select id="selectorVista" class="form-select my-2">
+                            <option value="tabla">Ver tabla</option>
+                            <option value="grafica">Ver gráfica</option>
+                        </select>
+                        <!-- fin select de tablas y graficas -->
+
                     </div>
                 </div>
             </div>
             <!-- inicio de grafica -->
             <div class="row">
-                <div class="col-12 mb-4">
+                <div class="col-12 mb-4" id="graficaResultados">
                     <div class="card bg-yellow-100 border-0 shadow">
-                        <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-                            <div class="d-block mb-3 mb-sm-0">
-                                <div class="fs-5 fw-normal mb-2">Resultados</div>
-                                <!-- <h2 class="fs-3 fw-extrabold">$10,567</h2> -->
-                                <!-- <div class="small mt-2"> 
-                                    <span class="fw-normal me-2">Yesterday</span>                              
-                                    <span class="fas fa-angle-up text-success"></span>                                   
-                                    <span class="text-success fw-bold">10.57%</span>
-                                </div> -->
-                            </div>
-                            
-                        </div>
                         <div class="card-body p-2">
                             <!-- area amarilla -->
                             <canvas id="myChart"></canvas>
@@ -45,7 +37,8 @@
                 
             </div>
             <!-- fin de grafica -->
-            <!-- inicio de tabla -->
+            <div id="tablaResultados">
+                <!-- inicio de tabla -->
             <div class="table-responsive">
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
@@ -60,7 +53,7 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="resultado in resultados">
-                            <th>@{{ resultado.id_equipo}}</th>
+                            <th>@{{ resultado.equipo.nombre}}</th>
                             <th>@{{ resultado.puntos}}</th>
                             <th>@{{ resultado.tiempo}}</th>
                             <!-- <th><button class="btn" @click="editandoResultados(resultado.id)">
@@ -78,6 +71,8 @@
                 </table>
             </div>
             <!-- fin de tabla -->
+            </div>
+            
         </div>
     </div>
     <!-- fin de card -->
@@ -129,6 +124,35 @@
 <script type="text/javascript" src="js/vue-resource.js"></script>
 <script type="text/javascript" src="js/apis/apiResultados.js"></script>
 <script type="module" src="js/resultados.js"></script>
+
+<script>
+    // Espera a que se cargue el DOM antes de ejecutar el script
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtiene el valor inicial del selector
+        var seleccionInicial = document.getElementById("selectorVista").value;
+
+        // Muestra la gráfica o la tabla según el valor inicial del selector
+        if (seleccionInicial === "tabla") {
+            document.getElementById("tablaResultados").style.display = "block";
+            document.getElementById("graficaResultados").style.display = "none";
+        } else if (seleccionInicial === "grafica") {
+            document.getElementById("tablaResultados").style.display = "none";
+            document.getElementById("graficaResultados").style.display = "block";
+        }
+
+        // Agrega un evento de cambio al selector
+        document.getElementById("selectorVista").addEventListener("change", function() {
+            var seleccion = this.value;
+            if (seleccion === "tabla") {
+                document.getElementById("tablaResultados").style.display = "block";
+                document.getElementById("graficaResultados").style.display = "none";
+            } else if (seleccion === "grafica") {
+                document.getElementById("tablaResultados").style.display = "none";
+                document.getElementById("graficaResultados").style.display = "block";
+            }
+        });
+    });
+</script>
 
 
 

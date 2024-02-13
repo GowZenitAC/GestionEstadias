@@ -248,6 +248,16 @@
                             <!-- fin boton de carreras -->
                             <!-- inicio boton de resultados -->
                             <li class="nav-item ">
+                                <a href="equiposTSU" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                    </span>
+                                    <span class="sidebar-text">Equipos TSU</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de resultados -->
+                            <!-- inicio boton de resultados -->
+                            <li class="nav-item ">
                                 <a href="resultadostsu" class="nav-link">
                                     <span class="sidebar-icon">
                                     <i class="fa-duotone fa-square-poll-vertical"></i>
