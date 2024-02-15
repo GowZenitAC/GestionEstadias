@@ -50,6 +50,8 @@ new Vue({
         mostrarModal:function(){
             this.agregando=true;
             this.option='';
+            this.points='';
+            this.preguntas_id='';
             $('#modalOpciones').modal('show');
         },
 
@@ -229,6 +231,7 @@ new Vue({
             // Unir las palabras renderizadas con espacios entre ellas
             return renderedWords.join(' ');
         },
+        
       },
       //FIN DE METHODS
 

@@ -174,12 +174,28 @@ new Vue({
             // Cierra el modal después de guardar
             $('#modalOpciones').modal('hide');
         },
+        renderQuestion(question) {
+            // Dividir el texto en palabras
+            const words = question.split(/\s+/);
+            // Utilizar KaTeX para renderizar cada palabra y agregarla a un array
+            const renderedWords = words.map(word => katex.renderToString(word, { throwOnError: false }));
+            // Unir las palabras renderizadas con espacios entre ellas
+            return renderedWords.join(' ');
+        },
+        renderOption(option) {
+            // Dividir el texto de la opción en palabras
+            const words = option.split(/\s+/);
+            // Utilizar KaTeX para renderizar cada palabra y agregarla a un array
+            const renderedWords = words.map(word => katex.renderToString(word, { throwOnError: false }));
+            // Unir las palabras renderizadas con espacios entre ellas
+            return renderedWords.join(' ');
+        },
 
         // actualizarOpciones:function(){
         //     var jsonOpciones = {option:this.option,
         //                         puntos:this.puntos};
         //     this.$http.patch(apiOpciones + '/' + this.id,jsonOpciones).then(function(json){
-        //         this.obtenerOpciones();
+        //         this.obtenerOpcions();
         //     });
         //     $('#modalOpciones').modal('hide');
         // },

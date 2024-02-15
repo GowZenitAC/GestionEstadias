@@ -233,6 +233,14 @@ new Vue({
         
             $("#modalPreguntas").modal("hide");
         },
+        renderQuestion(question) {
+            // Dividir el texto en palabras
+            const words = question.split(/\s+/);
+            // Utilizar KaTeX para renderizar cada palabra y agregarla a un array
+            const renderedWords = words.map(word => katex.renderToString(word, { throwOnError: false }));
+            // Unir las palabras renderizadas con espacios entre ellas
+            return renderedWords.join(' ');
+        },
         
         // guardarpregunta: function () {
         //     const preguntatsu = new FormData();

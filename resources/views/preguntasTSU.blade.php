@@ -36,7 +36,8 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="question in preguntas">
-                            <th>@{{question.pregunta}}</th>
+                            <th style="max-width: 20em; white-space: wrap;"><span v-html="renderQuestion(question.pregunta)"></span></th>
+                            <!-- <th>@{{question.pregunta}}</th> -->
                             <th>@{{question.category_t_s_u.nametsu}}</th>
                             <th>@{{question.carreras.carrera}}</th>
                             <th><img :src="question.imagen_preguntatsu" width="50"></th>

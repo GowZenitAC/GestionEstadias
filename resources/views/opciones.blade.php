@@ -84,10 +84,8 @@
                     <input type="text" class="form-control my-2" placeholder="Puntos" v-model="points">
                     <span>Pregunta:</span>
                     <select class="form-select" v-model="preguntas_id" aria-label="Default select example">
-                        <!-- <option selected>Open this select menu</option> -->
                         <option v-for="question in questions" :value="question.id">@{{question.pregunta}} - Categoría: @{{question.category.name}}</option>
                     </select>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
@@ -112,6 +110,7 @@
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
 <script type="text/javascript" src="js/apis/apiOpciones.js"></script>
+
 
 @endpush
 
