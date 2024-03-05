@@ -85,7 +85,7 @@
                 <p>Bienvenid@: <b>{{auth()->user()->name}}</b></p>
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item  active ">
+                <!-- <li class="nav-item  active ">
                     <a href="inicio" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +95,7 @@
                         </span>
                         <span class="sidebar-text">Inicio</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- inicio boton de categorias -->
                 <!-- <li class="nav-item ">
                     <a href="categorias" class="nav-link">
@@ -240,6 +240,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->
+                            <!-- inicio boton de bancos -->
+                            <li class="nav-item ">
+                                <a href="bancos" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-light fa-box-open"></i>
+                                    </span>
+                                    <span class="sidebar-text">Bancos</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de bancos -->
                             <!-- inicio boton de carreras -->
                             <li class="nav-item ">
                                 <a href="carreras" class="nav-link">
