@@ -3,11 +3,13 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTSUController;
 use App\Http\Controllers\equipoController;
+use App\Http\Controllers\EquiposTSUController;
 use App\Http\Controllers\OpcionesController;
 use App\Http\Controllers\OpcionesTSUController;
 use App\Http\Controllers\preguntasController;
 use App\Http\Controllers\PreguntasTSUController;
 use App\Http\Controllers\ResultadosController;
+use App\Http\Controllers\CarrerasdosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,4 +36,6 @@ Route::apiResource('resultados', ResultadosController::class);
 Route::apiResource('preguntasTSU', PreguntasTSUController::class);
 Route::apiResource('categoriasTSU', CategoryTSUController::class);
 Route::apiResource('opcionesTSU', OpcionesTSUController::class);
+Route::get('equiposTSU', [EquiposTSUController::class, 'index']);
+Route::get('carreras', [CarrerasdosController::class, 'index']);
 
