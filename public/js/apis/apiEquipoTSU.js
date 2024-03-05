@@ -1,5 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
  var apiequipoTSU = ruta + '/apiEquiposTSU';  
+ var apiCarreras = ruta + '/apiCarrerasDos';
 
  new Vue({
     http: {
@@ -14,11 +15,14 @@ var ruta = document.querySelector("[name=route]").value;
         id:'',
         nombretsu:'',
         puntuacion:'',
+        id_carrera:'',
+        carreras:[],
         equipos:[],
         agregando:true
     },
     created:function(){
         this.obtenerequipo();
+        this.obtenerCarreras();
     },
     methods:{
 
@@ -30,9 +34,18 @@ var ruta = document.querySelector("[name=route]").value;
                 console.log.apply(json);
               });
         },
+        obtenerCarreras(){
+            this.$http.get(apiCarreras).then(function(json){
+              this.carreras=json.data;
+              console.log(json.data)
+            }).catch(function(json){
+                console.log(json);
+              });
+        },
         mostrarModal:function(){
           this.agregando=true;
            this.nombretsu='';
+           this.id_carrera='';
            $('#modalEquipos').modal('show');
          },
           
@@ -41,12 +54,13 @@ var ruta = document.querySelector("[name=route]").value;
           this.id=id;
           this.$http.get(apiequipoTSU + '/' + id).then(function(json){ 
             this.nombretsu=json.data.nombretsu;
+            this.id_carrera=json.data.id_carrera;
           });
           $('#modalEquipos').modal('show');
          },
 
          actualizarequipo: function () {
-          var jsonequipo = { nombretsu: this.nombretsu };
+          var jsonequipo = { nombretsu: this.nombretsu, id_carrera: this.id_carrera };
       
           this.$http.patch(apiequipoTSU + '/' + this.id, jsonequipo)
               .then(function (json) {
@@ -131,13 +145,15 @@ var ruta = document.querySelector("[name=route]").value;
 
         guardarequipo: function () {
           var equipos = {
-              nombretsu: this.nombretsu
+              nombretsu: this.nombretsu,
+              id_carrera: this.id_carrera
           };
       
           this.$http.post(apiequipoTSU, equipos)
               .then(function (json) {
                   this.obtenerequipo();
                   this.nombretsu = '';
+                  this.id_carrera = '';
       
                   // Display success alert using SweetAlert2
                   Swal.fire({

@@ -18,6 +18,8 @@ class CarrerasDos extends Model
         'carrera2'
     ];
 
-    
+    public function equipostsu(){
+        return $this->hasOne(EquiposTSU::class);
+    }
 
 }

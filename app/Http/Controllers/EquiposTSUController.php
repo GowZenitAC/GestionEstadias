@@ -32,6 +32,7 @@ class EquiposTSUController extends Controller
         //
         $equipos=new EquiposTSU();
         $equipos->nombretsu=$request->get('nombretsu');
+        $equipos->id_carrera=$request->get('id_carrera');
         $equipos->save();
     }
 
@@ -60,6 +61,7 @@ class EquiposTSUController extends Controller
         //
         $equipos=EquiposTSU::find($id);
         $equipos->nombretsu=$request->get('nombretsu');
+        $equipos->id_carrera=$request->get('id_carrera');
         $equipos->update();
     }
 

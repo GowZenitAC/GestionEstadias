@@ -25,6 +25,7 @@
                         <tr>
                        
                             <th class="border-0 rounded-start">equipo</th>
+                            <th class="border-0 rounded-start">Carrera</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
@@ -34,7 +35,7 @@
                         <tr v-for="equipo in equipos">
                        
                             <th>@{{equipo.nombretsu}}</th>
-                            
+                            <th>@{{equipo.carreras.carrera2}}</th>
                             <th><button class="btn" @click="editandoequipo(equipo.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square"></i>
@@ -70,7 +71,10 @@
       <div class="modal-body">
         <span>Escriba el equipo:</span>
         <input type="text" class="form-control my-2" placeholder="escribe nombre" v-model="nombretsu"><br>
-        
+        <span>Seleccione la carrera</span>
+        <select class="form-control my-2" v-model="id_carrera">
+            <option v-for="carrera in carreras" :value="carrera.id">@{{carrera.carrera2}}</option>
+        </select>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>

@@ -12,15 +12,17 @@ class EquiposTSU extends Model
     public $incrementingin=true;
     
     public $timestamps=false;
-
+    protected $with=['carreras'];
     protected $fillable=[
         'id',
         'nombretsu',
-      
+        'id_carrera'
     ];
 
     public function resultadostsu(){
         return $this->hasOne(ResultadosTSU::class);
     }
-
+    public function carreras(){
+        return $this->belongsTo(CarrerasDos::class, 'id_carrera');
+    }
 }
