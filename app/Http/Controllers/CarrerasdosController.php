@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ResultadosTSU;
 use Illuminate\Http\Request;
+use App\Models\CarrerasDos;
 
-class ResultadosTSUController extends Controller
+class CarrerasdosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ResultadosTSUController extends Controller
     public function index()
     {
         //
-        return ResultadosTSU::all();
+        return CarrerasDos::all();
     }
 
     /**
@@ -30,12 +30,10 @@ class ResultadosTSUController extends Controller
     public function store(Request $request)
     {
         //
-        $resultadostsu=new ResultadosTSU();
-        $resultadostsu->id=$request->get('id');
-        $resultadostsu->id_equipotsu=$request->get('id_equipotsu');
-        $resultadostsu->puntostsu=$request->get('puntostsu');
-        $resultadostsu->tiempotsu=$request->get('tiempotsu');
-        $resultadostsu->save();
+        $carrera=new CarrerasDos();
+        $carrera->id=$request->get('id');
+        $carrera->carrera2=$request->get('carrera2');
+        $carrera->save();
     }
 
     /**
@@ -44,7 +42,7 @@ class ResultadosTSUController extends Controller
     public function show(string $id)
     {
         //
-        return ResultadosTSU::find($id);
+        return CarrerasDos::find($id);
     }
 
     /**
@@ -61,11 +59,9 @@ class ResultadosTSUController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $resultadostsu=ResultadosTSU::find($id);
-        $resultadostsu->id_equipotsu=$request->get('id_equipotsu');
-        $resultadostsu->puntostsu=$request->get('puntostsu');
-        $resultadostsu->tiempotsu=$request->get('tiempotsu');
-        $resultadostsu->update();
+        $carrera=CarrerasDos::find($id);
+        $carrera->carrera2=$request->get('carrera2');
+        $carrera->update();
     }
 
     /**
@@ -74,7 +70,7 @@ class ResultadosTSUController extends Controller
     public function destroy(string $id)
     {
         //
-        $resultadostsu=ResultadosTSU::find($id);
-        $resultadostsu->delete();
+        $carrera=CarrerasDos::find($id);
+        $carrera->delete();
     }
 }

@@ -50,6 +50,8 @@ new Vue({
         mostrarModal:function(){
             this.agregando=true;
             this.option='';
+            this.points='';
+            this.preguntas_id='';
             $('#modalOpciones').modal('show');
         },
 
@@ -213,7 +215,23 @@ new Vue({
         //     });
         //     $('#modalOpciones').modal('hide');
         // }, 
-
+        renderQuestion(question) {
+            // Dividir el texto en palabras
+            const words = question.split(/\s+/);
+            // Utilizar KaTeX para renderizar cada palabra y agregarla a un array
+            const renderedWords = words.map(word => katex.renderToString(word, { throwOnError: false }));
+            // Unir las palabras renderizadas con espacios entre ellas
+            return renderedWords.join(' ');
+        },
+        renderOption(option) {
+            // Dividir el texto de la opción en palabras
+            const words = option.split(/\s+/);
+            // Utilizar KaTeX para renderizar cada palabra y agregarla a un array
+            const renderedWords = words.map(word => katex.renderToString(word, { throwOnError: false }));
+            // Unir las palabras renderizadas con espacios entre ellas
+            return renderedWords.join(' ');
+        },
+        
       },
       //FIN DE METHODS
 

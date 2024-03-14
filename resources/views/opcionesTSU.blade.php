@@ -37,10 +37,11 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="option in filtroOpciones">
-                            <!-- <th>@{{option.id}}</th> -->
-                            <th>@{{option.optiontsu}}</th>
+                        <th><span v-html="renderOption(option.optiontsu)"></span></th>
+                            <!-- <th>@{{option.optiontsu}}</th> -->
                             <th>@{{option.puntostsu}}</th>
-                            <th>@{{option.preguntas_t_s_u.pregunta}}</th>
+                            <th><span v-html="renderQuestion(option.preguntas_t_s_u.pregunta)"></span></th>
+                            <!-- <th>@{{option.preguntas_t_s_u.pregunta}}</th> -->
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 
                                     <i class="fa-duotone fa-pen-to-square fa-xl"></i>

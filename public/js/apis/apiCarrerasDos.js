@@ -1,5 +1,5 @@
 var ruta = document.querySelector("[name=route]").value;
- var apiCarreras = ruta + '/apiCarreras';  
+ var apiCarrerasDos = ruta + '/apiCarrerasDos';  
 
 new Vue({
     http: {
@@ -10,9 +10,9 @@ new Vue({
       el:"#carreras",
 
       data:{
-          titulo:'Bancos',
+          titulo:'Carreras',
           id:'',
-          carrera:'',
+          carrera2:'',
           buscar:'',
           agregando:true,
           carreras:[],
@@ -27,7 +27,7 @@ new Vue({
       methods:{
 
         obtenerCarrera:function(){
-          this.$http.get(apiCarreras).then(function(json){
+          this.$http.get(apiCarrerasDos).then(function(json){
             this.carreras=json.data;
             console.log(json.data);
           }).catch(function(json){
@@ -38,25 +38,25 @@ new Vue({
 
         mostrarModal:function(){
              this.agregando=true;
-             this.carrera='';
+             this.carrera2='';
             $('#modalCarreras').modal('show');
           },
         editandoCarrera:function(id){
           this.agregando=false;
           this.id=id;
-          this.$http.get(apiCarreras + '/' + id).then(function(json){
-            this.carrera=json.data.carrera;
+          this.$http.get(apiCarrerasDos + '/' + id).then(function(json){
+            this.carrera2=json.data.carrera2;
           });
           $('#modalCarreras').modal('show');
         },
 
         actualizarCarrera: function () {
           var jsonCarrera = {
-              carrera: this.carrera
+              carrera2: this.carrera2
           };
       
           // Realizar la petición HTTP para actualizar la categoría
-          this.$http.patch(apiCarreras + '/' + this.id, jsonCarrera).then(function (json) {
+          this.$http.patch(apiCarrerasDos + '/' + this.id, jsonCarrera).then(function (json) {
               // Éxito
               this.obtenerCarrera();
       
@@ -98,7 +98,7 @@ new Vue({
         }).then((result) => {
             if (result.isConfirmed) {
                 // Realizar la petición HTTP para eliminar la categoría
-                this.$http.delete(apiCarreras + '/' + id).then(function (json) {
+                this.$http.delete(apiCarrerasDos + '/' + id).then(function (json) {
                     // Éxito
                     this.obtenerCarrera();
     
@@ -142,14 +142,14 @@ new Vue({
         // },
         guardarCarrera: function () {
           var carreras = {
-              carrera: this.carrera
+              carrera2: this.carrera2
           };
       
           // Realizar la petición HTTP
-          this.$http.post(apiCarreras, carreras).then(function (json) {
+          this.$http.post(apiCarrerasDos, carreras).then(function (json) {
               // Éxito
               this.obtenerCarrera();
-              this.carrera = '';
+              this.carrera2 = '';
       
               // Mostrar mensaje SweetAlert de éxito
               Swal.fire({
@@ -196,7 +196,7 @@ new Vue({
 
         filtroCarrera:function(){
           return this.carreras.filter((carreras)=>{
-            return carreras.carrera.toLowerCase().match(this.buscar.toLowerCase().trim())
+            return carreras.carrera2.toLowerCase().match(this.buscar.toLowerCase().trim())
           });
         },
     

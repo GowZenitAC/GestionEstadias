@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('titulo','Bancos')
+@section('titulo','Carreras')
 @section('contenido')
 
 <!-- INICIA VUE -->
@@ -14,7 +14,7 @@
                     </div>
                     <div class="col text-end">
                         <!-- Button Modal -->
-<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar Banco</button>
+<button @click="mostrarModal()" type="button" class="btn btn-block btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalSignIn">Agregar carrera</button>
 <!-- Modal Content -->
                        
                     </div>
@@ -25,7 +25,7 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0 rounded-start">Nombre del banco</th>
+                            <th class="border-0 rounded-start">Carrera</th>
                             <th class="border-0">Editar</th>
                             <th class="border-0 rounded-end">Eliminar</th>
                         </tr>
@@ -33,7 +33,7 @@
                     <tbody>
                         <!-- Item -->
                         <tr v-for="carrera in filtroCarrera">
-                            <th>@{{carrera.carrera}}</th>
+                            <th>@{{carrera.carrera2}}</th>
                             <th><button class="btn" @click="editandoCarrera(carrera.id)">
 									<!-- <i class="fa-solid fa-file-pen"></i> -->
 									<i class="fa-duotone fa-pen-to-square fa-xl"></i>
@@ -60,23 +60,23 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar banco</h5>
-        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar banco</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar Carrera</h5>
+        <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar Carrera</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           
         </button>
       </div>
       <div class="modal-body">
      
-        Nombre del banco:
-        <input type="text" class="form-control" placeholder="Nombre del banco" v-model="carrera"><br>
+        Nombre de la carrera:
+        <input type="text" class="form-control" placeholder="Nombre de la carrera" v-model="carrera2"><br>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
        
-        <button type="button" class="btn btn-primary" @click="guardarCarrera()" v-if="agregando==true && carrera.trim() !== ''">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="guardarCarrera()" v-if="agregando==true && carrera2.trim() !== ''">Guardar</button>
 
-        <button type="button" class="btn btn-primary" @click="actualizarCarrera()" v-if="agregando==false && carrera.trim() !== ''">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarCarrera()" v-if="agregando==false && carrera2.trim() !== ''">Guardar</button>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
 
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
-<script type="text/javascript" src="js/apis/apiCarreras.js"></script>
+<script type="text/javascript" src="js/apis/apiCarrerasDos.js"></script>
 
 @endpush
 

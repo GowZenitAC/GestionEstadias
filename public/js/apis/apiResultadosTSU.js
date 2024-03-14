@@ -1,5 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
- var apiCarreras = ruta + '/apiCarreras';  
+ var apiResultadosTSU = ruta + '/apiResultadosTSU';
+ var myChart = document.getElementById('myChart');
 
 new Vue({
     http: {
@@ -7,84 +8,93 @@ new Vue({
           'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
         }
       },
-      el:"#carreras",
+      el:"#resultadostsu",
 
       data:{
-          titulo:'Bancos',
+          titulo:'Resultados TSU',
           id:'',
-          carrera:'',
+          id_equipotsu:'',
+          puntostsu:'',
+          tiempotsu:'',
           buscar:'',
           agregando:true,
-          carreras:[],
+          resultados:[],
       },
 
       created:function(){
-        this.obtenerCarrera();
+        this.obtenerResultados();
       },
 
       //funcion que se usa cuando se crea la pagina
       
       methods:{
 
-        obtenerCarrera:function(){
-          this.$http.get(apiCarreras).then(function(json){
-            this.carreras=json.data;
-            console.log(json.data);
+        obtenerResultados:function(){
+          this.$http.get(apiResultadosTSU).then(function(json){
+            this.resultados=json.data;
+            console.log(json.data)
           }).catch(function(json){
-            console.log(json);
+            console.log.apply(json);
           });
+
         },
 
 
         mostrarModal:function(){
              this.agregando=true;
-             this.carrera='';
-            $('#modalCarreras').modal('show');
+             this.id_equipotsu='';
+             this.puntostsu='';
+             this.tiempotsu='';
+            $('#modalResultados').modal('show');
           },
-        editandoCarrera:function(id){
+        editandoResultados:function(id){
           this.agregando=false;
           this.id=id;
-          this.$http.get(apiCarreras + '/' + id).then(function(json){
-            this.carrera=json.data.carrera;
+          this.$http.get(apiResultadosTSU + '/' + id).then(function(json){
+            this.id_equipotsu=json.data.id_equipotsu;
+            this.puntostsu=json.data.puntostsu;
+            this.tiempotsu=json.data.tiempotsu;
           });
-          $('#modalCarreras').modal('show');
+          $('#modalResultados').modal('show');
         },
 
-        actualizarCarrera: function () {
-          var jsonCarrera = {
-              carrera: this.carrera
+        actualizarResultados: function () {
+          var jsonResultado = {
+              id_equipotsu: this.id_equipotsu,
+              puntostsu: this.puntostsu,
+              tiempotsu: this.tiempotsu
           };
       
           // Realizar la petición HTTP para actualizar la categoría
-          this.$http.patch(apiCarreras + '/' + this.id, jsonCarrera).then(function (json) {
+          this.$http.patch(apiResultadosTSU + '/' + this.id, jsonResultado).then(function (json) {
               // Éxito
-              this.obtenerCarrera();
+              this.obtenerResultados();
       
               // Mostrar mensaje SweetAlert de éxito
               Swal.fire({
                   title: 'Éxito',
-                  text: 'La carrera se ha actualizado correctamente.',
+                  text: 'Los resultados se han actualizado correctamente.',
                   icon: 'success',
                   confirmButtonText: 'OK'
               });
           }).catch(function (error) {
               // Error
-              console.error(jsonCarrera);
+              console.error(jsonResultado);
       
               // Mostrar mensaje SweetAlert de error
               Swal.fire({
                   title: 'Error',
-                  text: 'Hubo un problema al actualizar la carrera. Por favor, inténtalo de nuevo.',
+                  text: 'Hubo un problema al actualizar los resultados. Por favor, inténtalo de nuevo.',
                   icon: 'error',
                   confirmButtonText: 'OK'
               });
           });
       
           // Ocultar el modal
-          $('#modalCarreras').modal('hide');
+          $('#modalResultados').modal('hide');
       },
 
-      eliminarCarrera: function (id) {
+      eliminarResultados: function (id) {
         // Utilizar SweetAlert en lugar de confirm
         Swal.fire({
             title: '¿Estás seguro?',
@@ -98,14 +108,14 @@ new Vue({
         }).then((result) => {
             if (result.isConfirmed) {
                 // Realizar la petición HTTP para eliminar la categoría
-                this.$http.delete(apiCarreras + '/' + id).then(function (json) {
+                this.$http.delete(apiResultadosTSU + '/' + id).then(function (json) {
                     // Éxito
-                    this.obtenerCarrera();
+                    this.obtenerResultados();
     
                     // Mostrar mensaje SweetAlert de éxito
                     Swal.fire(
                         'Eliminado',
-                        'La carrera ha sido eliminada correctamente.',
+                        'El resultado ha sido eliminada correctamente.',
                         'success'
                     );
                 }).catch(function (error) {
@@ -115,7 +125,7 @@ new Vue({
                     // Mostrar mensaje SweetAlert de error
                     Swal.fire(
                         'Error',
-                        'Hubo un problema al eliminar la carrera. Por favor, inténtalo de nuevo.',
+                        'Hubo un problema al eliminar el resultado. Por favor, inténtalo de nuevo.',
                         'error'
                     );
                 });
@@ -140,39 +150,43 @@ new Vue({
         //     });
         //   }
         // },
-        guardarCarrera: function () {
-          var carreras = {
-              carrera: this.carrera
+        guardarResultados: function () {
+          var resultados = {
+              id_equipotsu: this.id_equipotsu,
+              puntostsu: this.puntostsu,
+              tiempotsu: this.tiempotsu
           };
       
           // Realizar la petición HTTP
-          this.$http.post(apiCarreras, carreras).then(function (json) {
+          this.$http.post(apiResultadosTSU, resultados).then(function (json) {
               // Éxito
-              this.obtenerCarrera();
-              this.carrera = '';
+              this.obtenerResultados();
+              this.id_equipotsu='';
+              this.puntostsu='';
+              this.tiempotsu='';
       
               // Mostrar mensaje SweetAlert de éxito
               Swal.fire({
                   title: 'Éxito',
-                  text: 'La carrera se ha guardado correctamente.',
+                  text: 'El resultado se ha guardado correctamente.',
                   icon: 'success',
                   confirmButtonText: 'OK'
               });
           }).catch(function (error) {
               // Error
-              console.error(carreras);
+              console.error(resultados);
       
               // Mostrar mensaje SweetAlert de error
               Swal.fire({
                   title: 'Error',
-                  text: 'Hubo un problema al guardar la carrera. Por favor, inténtalo de nuevo.',
+                  text: 'Hubo un problema al guardar el resultado. Por favor, inténtalo de nuevo.',
                   icon: 'error',
                   confirmButtonText: 'OK'
               });
           });
       
           // Ocultar el modal
-          $('#modalCarreras').modal('hide');
+          $('#modalResultados').modal('hide');
       },
         // guardarCategory:function(){
         //   var categories = {
@@ -194,9 +208,9 @@ new Vue({
 
       computed:{
 
-        filtroCarrera:function(){
-          return this.carreras.filter((carreras)=>{
-            return carreras.carrera.toLowerCase().match(this.buscar.toLowerCase().trim())
+        filtroResultados:function(){
+          return this.resultados.filter((resultados)=>{
+            return resultados.id_equipotsu.toLowerCase().match(this.buscar.toLowerCase().trim())
           });
         },
     

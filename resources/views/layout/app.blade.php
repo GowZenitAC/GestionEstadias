@@ -26,6 +26,10 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
+    
+
+    <!--Katex-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
     <!-- Sweet Alert -->
     <link type="text/css" href="{{ asset('vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
@@ -81,7 +85,7 @@
                 <p>Bienvenid@: <b>{{auth()->user()->name}}</b></p>
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item  active ">
+                <!-- <li class="nav-item  active ">
                     <a href="inicio" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +95,7 @@
                         </span>
                         <span class="sidebar-text">Inicio</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- inicio boton de categorias -->
                 <!-- <li class="nav-item ">
                     <a href="categorias" class="nav-link">
@@ -236,6 +240,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de Opciones -->
+                            <!-- inicio boton de bancos -->
+                            <li class="nav-item ">
+                                <a href="bancos" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-light fa-box-open"></i>
+                                    </span>
+                                    <span class="sidebar-text">Bancos</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de bancos -->
                             <!-- inicio boton de carreras -->
                             <li class="nav-item ">
                                 <a href="carreras" class="nav-link">
@@ -246,6 +260,16 @@
                                 </a>
                             </li>
                             <!-- fin boton de carreras -->
+                            <!-- inicio boton de resultados -->
+                            <li class="nav-item ">
+                                <a href="equiposTSU" class="nav-link">
+                                    <span class="sidebar-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                    </span>
+                                    <span class="sidebar-text">Equipos TSU</span>
+                                </a>
+                            </li>
+                            <!-- fin boton de resultados -->
                             <!-- inicio boton de resultados -->
                             <li class="nav-item ">
                                 <a href="resultadostsu" class="nav-link">
@@ -395,7 +419,9 @@
 
     <!-- Volt JS -->
     <script src="{{asset('assets/js/volt.js')}}"></script>
-
+    
+    <!-- KATEX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
 
 </body>
 

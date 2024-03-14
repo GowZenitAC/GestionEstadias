@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ResultadosTSU;
+use App\Models\EquiposTSU;
 use Illuminate\Http\Request;
 
-class ResultadosTSUController extends Controller
+class EquiposTSUController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ResultadosTSUController extends Controller
     public function index()
     {
         //
-        return ResultadosTSU::all();
+        return EquiposTSU::all();
     }
 
     /**
@@ -30,12 +30,10 @@ class ResultadosTSUController extends Controller
     public function store(Request $request)
     {
         //
-        $resultadostsu=new ResultadosTSU();
-        $resultadostsu->id=$request->get('id');
-        $resultadostsu->id_equipotsu=$request->get('id_equipotsu');
-        $resultadostsu->puntostsu=$request->get('puntostsu');
-        $resultadostsu->tiempotsu=$request->get('tiempotsu');
-        $resultadostsu->save();
+        $equipos=new EquiposTSU();
+        $equipos->nombretsu=$request->get('nombretsu');
+        $equipos->id_carrera=$request->get('id_carrera');
+        $equipos->save();
     }
 
     /**
@@ -44,7 +42,7 @@ class ResultadosTSUController extends Controller
     public function show(string $id)
     {
         //
-        return ResultadosTSU::find($id);
+        return EquiposTSU::find($id);
     }
 
     /**
@@ -61,11 +59,10 @@ class ResultadosTSUController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $resultadostsu=ResultadosTSU::find($id);
-        $resultadostsu->id_equipotsu=$request->get('id_equipotsu');
-        $resultadostsu->puntostsu=$request->get('puntostsu');
-        $resultadostsu->tiempotsu=$request->get('tiempotsu');
-        $resultadostsu->update();
+        $equipos=EquiposTSU::find($id);
+        $equipos->nombretsu=$request->get('nombretsu');
+        $equipos->id_carrera=$request->get('id_carrera');
+        $equipos->update();
     }
 
     /**
@@ -74,7 +71,7 @@ class ResultadosTSUController extends Controller
     public function destroy(string $id)
     {
         //
-        $resultadostsu=ResultadosTSU::find($id);
-        $resultadostsu->delete();
+        $equipos=EquiposTSU::find($id);
+        $equipos->delete();
     }
 }

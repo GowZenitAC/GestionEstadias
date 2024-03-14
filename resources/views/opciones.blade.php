@@ -38,9 +38,9 @@
                         <!-- Item -->
                         <tr v-for="option in filtroOpciones">
                             <!-- <th>@{{option.id}}</th> -->
-                            <th>@{{option.option}}</th>
+                            <th><span v-html="renderOption(option.option)"></span></th>
                             <th>@{{option.points}}</th>
-                            <th  style="max-width: 20em; white-space: wrap;">@{{option.preguntas.pregunta}}</th>
+                            <th><span v-html="renderQuestion(option.preguntas.pregunta)"></span></th>
 
                             <th><button class="btn" @click="editandoOpciones(option.id)">
 
@@ -83,11 +83,9 @@
                     <span>Puntos:</span>
                     <input type="text" class="form-control my-2" placeholder="Puntos" v-model="points">
                     <span>Pregunta:</span>
-                    <select  class="form-select" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; white-space: nowrap;"  v-model="preguntas_id" aria-label="Default select example">
-                        <!-- <option selected>Open this select menu</option> -->
+                    <select class="form-select" v-model="preguntas_id" aria-label="Default select example">
                         <option v-for="question in questions" :value="question.id">@{{question.pregunta}} - Categoría: @{{question.category.name}}</option>
                     </select>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary text-gray ms-auto" data-bs-dismiss="modal">Cerrar</button>
@@ -112,6 +110,7 @@
 @push('scripts')
 <script type="text/javascript" src="js/vue-resource.js"></script>
 <script type="text/javascript" src="js/apis/apiOpciones.js"></script>
+
 
 @endpush
 
