@@ -23,6 +23,21 @@
 
                     </div>
                 </div>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <p>Cambiar Categoría</p>
+                    </div>
+                    <div class="col text-end">
+                        <!-- select de tablas y graficas -->
+                        <select id="selectorBanco" class="form-select my-2" v-model="banco">
+                            <option selected value="">Seleccione una categoría</option>
+                            <option value="B1-FUNCIONES MATEMÁTICAS">B1-FUNCIONES MATEMÁTICAS</option>
+                            <option value="B2-ESTADÍSTICA">B2-ESTADÍSTICA</option>
+                        </select>
+                        <!-- fin select de tablas y graficas -->
+
+                    </div>
+                </div>
             </div>
             <!-- inicio de grafica -->
             <div class="row">
@@ -50,7 +65,7 @@
                         </thead>
                         <tbody>
                             <!-- Item -->
-                            <tr v-for="resultado in resultados">
+                            <tr v-for="resultado in filtrarBancos">
                                 <th>@{{ resultado.equipotsu.nombretsu}}</th>
                                 <th>@{{ resultado.puntostsu}}</th>
                                 <th>@{{ resultado.tiempotsu}}</th>
