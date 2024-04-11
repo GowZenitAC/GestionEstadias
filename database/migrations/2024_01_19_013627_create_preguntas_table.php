@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('pregunta');
             $table->string('imagen_pregunta')->nullable();
-            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(Category::class)->nullable()->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
