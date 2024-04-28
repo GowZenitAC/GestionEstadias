@@ -1,5 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
  var apiResultadosTSU = ruta + '/apiResultadosTSU';
+ var apiBancos = ruta + '/apiCarreras';
  var myChart = document.getElementById('myChart');
 
 new Vue({
@@ -19,6 +20,7 @@ new Vue({
           buscar:'',
           agregando:true,
           resultados:[],
+          banco:'',
       },
 
       created:function(){
@@ -213,6 +215,20 @@ new Vue({
             return resultados.id_equipotsu.toLowerCase().match(this.buscar.toLowerCase().trim())
           });
         },
+        filtrarBancos(){
+          if (this.banco === '') {
+            return this.resultados
+            
+          }
+            let result
+            if (this.banco === 'B1-FUNCIONES MATEMÁTICAS') {
+                result = this.resultados.filter( resultados => resultados.equipotsu.carreras.carrera2 === "Tecnologías de la información" || resultados.equipotsu.carreras.carrera2 === "Mantenimiento industrial");
+            }else if (this.banco === 'B2-ESTADÍSTICA') {
+              result = this.resultados.filter( resultados => resultados.equipotsu.carreras.carrera2 === "Turismo" || resultados.equipotsu.carreras.carrera2 === "Gastronomía" || resultados.equipotsu.carreras.carrera2 === "Administración");
+            }
+
+            return result
+        }
     
   }
 })

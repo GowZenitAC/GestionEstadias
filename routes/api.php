@@ -10,6 +10,7 @@ use App\Http\Controllers\preguntasController;
 use App\Http\Controllers\PreguntasTSUController;
 use App\Http\Controllers\ResultadosController;
 use App\Http\Controllers\CarrerasdosController;
+use App\Http\Controllers\ResultadosTSUController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,9 @@ Route::get('preguntasWithOptions', [preguntasController::class, 'getQuestionsWit
 // Route::post('resultados', [ResultadosController::class, 'store']);
 Route::apiResource('resultados', ResultadosController::class);
 //rutas para TSU
-Route::apiResource('preguntasTSU', PreguntasTSUController::class);
+Route::get('preguntasTSU', [PreguntasTSUController::class, 'getQuestionsWithOptions']);
 Route::apiResource('categoriasTSU', CategoryTSUController::class);
 Route::apiResource('opcionesTSU', OpcionesTSUController::class);
 Route::get('equiposTSU', [EquiposTSUController::class, 'index']);
 Route::get('carreras', [CarrerasdosController::class, 'index']);
-
+Route::apiResource('resultadosTSU', ResultadosTSUController::class);

@@ -32,6 +32,6 @@ class preguntasTSU extends Model
     }
 
     public function OptionTSU(){
-        return $this->hasMany(OpcionesTSU::class);
+        return $this->hasMany(OpcionesTSU::class, 'pregunta_tsu_id');
     }
 }

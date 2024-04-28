@@ -94,4 +94,10 @@ class PreguntasTSUController extends Controller
         $preguntas = PreguntasTSU::find($id);
         $preguntas->delete();
     }
+
+    public function getQuestionsWithOptions()
+    {
+        $preguntas = PreguntasTSU::with('OptionTSU')->get();
+        return $preguntas;
+    }
 }
